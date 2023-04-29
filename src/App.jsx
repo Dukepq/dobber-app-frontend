@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import Navbar from './navbar'
 import AnalyticsColumns from './AnalyticsColumns'
-import {sortBySpread, sortByROBSa, sortByROBSb, sortByDepthRatio} from './sortingFuncs.js'
+import sortingLogic from './sortingLogic'
 
 
 function App() {
@@ -44,7 +44,6 @@ function App() {
   }
 
   useEffect(() => {
-    console.log('!!!')
     try {
       const array = [...data]
       const sortedArray = sortingLogic(sorting, array)
@@ -53,33 +52,6 @@ function App() {
       console.log(err)
     }
   }, [sorting])
-  // add cases to this when you add rows containing different data
-  const sortingLogic = (sorting, array) => {
-    let sortedArray
-    if (!sorting.field) return array
-    switch (sorting.field) {
-      case "spread":
-        sortedArray = sortBySpread(array)
-        break
-      case "depth":
-        sortedArray = sortByDepthRatio(array)
-        break
-      case "ROBSa":
-        sortedArray = sortByROBSa(array)
-        break
-      case "ROBSb":
-        sortedArray = sortByROBSb(array)
-        break
-      case "exchange":
-        sortedArray = array
-        break
-      case "name":
-        sortedArray = array
-        break
-    }
-    return sorting.ascending ? sortedArray : sortedArray.reverse()
-  }
-
   return (
     <>
       < Navbar />
