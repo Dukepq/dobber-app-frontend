@@ -28,7 +28,6 @@ export const sortBySpread = (array) => {
 
   export const sortByName = (array) => {
     const sorted = array?.sort((a, b) => {
-      console.log(a?.depthData?.pair.toUpperCase() < b?.depthData?.pair.toUpperCase())
       if (a?.depthData?.pair.toUpperCase() < b?.depthData?.pair.toUpperCase()) return -1
       if (a?.depthData?.pair.toUpperCase() > b?.depthData?.pair.toUpperCase()) return 1
       return 0
