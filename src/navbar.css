@@ -1,0 +1,102 @@
+/* nav stuff */
+
+.navigation {
+    height: 100dvh;
+    background-color: var(--color-dark-grey);
+    width: 6rem;
+    position: fixed;
+    transition: width 300ms;
+    z-index: 999;
+}
+
+.navbar-nav {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.navigation li {
+    width: 100%;
+    position: relative;
+}
+
+.nav-logo {
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+    width: 4rem;
+    transition: transform 300ms
+}
+
+.navbar-nav a {
+    height: 6rem;
+    display: flex;
+    align-items: center;
+    transition: transform 200ms ease;
+}
+
+.navbar-nav li:last-child {
+    margin-top: auto;
+}
+
+.navbar-nav li:not(.navbar-nav li:first-child):hover {
+    background-color: #414141;
+}
+
+.navbar-nav li:hover::before {
+    content: "";
+    display: block;
+    width: 3px;
+    height: 6rem;
+    background-color: var(--color-purp);
+    position: absolute;
+    filter: blur(1rem);
+}
+
+.navbar-nav img:not(.nav-logo) {
+    max-width: 2rem;
+    min-width: 2rem;
+    margin: 0 2rem
+}
+
+.nav-text {
+    display: none;
+    margin-left: 1rem;
+    color: white;
+    position: relative;
+    right: 6rem;
+    opacity: 0;
+}
+
+.navbar-nav li:first-child {
+    display: flex;
+    justify-content: center;
+}
+
+.navigation:hover {
+    width: 16rem
+}
+
+.navigation:hover .nav-logo {
+    transform: rotate(90deg);
+}
+
+.navigation:hover .nav-text {
+    transition: 600ms;
+    animation: slide-ani 300ms ease forwards
+}
+
+
+@keyframes slide-ani {
+    from {
+        right: 6rem;
+        opacity: 0;
+    }
+    to {
+        right: 0;
+        opacity: 1;
+    }
+}
+
+.navigation:hover .nav-text {
+    display: inline;
+}
