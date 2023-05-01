@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import './assets/App.css'
 import Navbar from './navbar'
 import Screener from './screener'
+import specificView from './specificPairView'
+import TopScreenerSection from './topScreenerSection'
 
 
 function App() {
@@ -37,6 +39,7 @@ function App() {
   return (
     <>
       < Navbar />
+      < TopScreenerSection />
       < Screener data = {data}/>
     </>
   )

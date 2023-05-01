@@ -1,6 +1,5 @@
 import { useState, useEffect} from "react"
 
-// #DBFF00, #4FC714, #5AFA5D, #FA3432, #FF3F04
 export default function AnalyticsColumns(props) {
     const [ROBSaColor, setROBSaColor] = useState("white")
     const [ROBSbColor, setROBSbColor] = useState("white")
@@ -15,7 +14,7 @@ export default function AnalyticsColumns(props) {
     const colorArray = ["#ff0000", "#c1523c", "#d28d31", "#cb983a", "#bfd044", "#57ff62"]
     const highlight = async (value, relativeTo, bounds, colorArray, hook) => {
         if (!value || !relativeTo) {
-            hook("white")
+            hook("grey")
             return
         }
         if (value < bounds[0] * relativeTo) hook(colorArray[0])
@@ -31,10 +30,11 @@ export default function AnalyticsColumns(props) {
         <div className={`col col-${props.id}`}>
             <div className={`row row-1 row-1-col-${props.id ?? 1}`}><span><a target="_blank" href={`https://account.bitvavo.com/markets/${props.name}`}>{props.name}</a></span></div>
             <div className={`row row-2 row-2-col-${props.id ?? 1}`}><span>{props.exchange}</span></div>
-            <div style={{color: ROBSaColor}} className={`row row-3 row-3-col-${props.id ?? 1}`}><span>{props.ROBSa?.toFixed(3)}</span></div>
-            <div style={{color: ROBSbColor}} className={`row row-4 row-4-col-${props.id ?? 1}`}><span>{props.ROBSb?.toFixed(3)}</span></div>
-            <div style={{color: depthColor}} className={`row row-5 row-5-col-${props.id ?? 1}`}><span>{props.depthRatio?.toFixed(3)}</span></div>
-            <div style={{color: spreadColor}} className={`row row-6 row-6-col-${props.id ?? 1}`}><span>{(props.spread * 100).toFixed(3)}%</span></div>
+            <div style={{color: ROBSaColor}} className={`row row-3 row-3-col-${props.id ?? 1}`}><span>{props.ROBSa?.toFixed(3) || "low volume"}</span></div>
+            <div style={{color: ROBSbColor}} className={`row row-4 row-4-col-${props.id ?? 1}`}><span>{props.ROBSb?.toFixed(3) || "low volume"}</span></div>
+            <div style={{color: depthColor}} className={`row row-5 row-5-col-${props.id ?? 1}`}><span>{props.depthRatio?.toFixed(3) || "/"}</span></div>
+            <div style={{color: spreadColor}} className={`row row-6 row-6-col-${props.id ?? 1}`}><span>{(props.spread * 100).toFixed(3) || "/"}%</span></div>
+            <div style={{color: "white"}} className={`row row-6 row-6-col-${props.id ?? 1}`}><span>{`${(props.volumeData)?.toFixed(2) || "-"}` }</span></div>
         </div>
     )
 }

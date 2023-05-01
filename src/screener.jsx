@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import './assets/App.css'
-import Navbar from './navbar'
 import AnalyticsColumns from './AnalyticsColumns'
 import sortingLogic from './utils/non-pure/sortingLogic'
 import ExtraInfo from './components/extraInfo'
@@ -30,25 +29,32 @@ export default function Screener(props) {
     const calcAverages = (data) => {
       if (!data || (data.length < 1)) return
       let count = 0
-      let ROBSbTotal = 0
-      let ROBSaTotal = 0
-      let spreadTotal = 0
-      let depthTotal = 0
+      let ROBSbTotal = []
+      let ROBSaTotal = []
+      let spreadTotal = []
+      let depthTotal = []
       for (let i = 0; i < data.length; i++) {
-        try {
-          ROBSbTotal += data[i].ROBS.ROBSb
-          ROBSaTotal += data[i].ROBS.ROBSb
-          spreadTotal += data[i].depthData.data.spread
-          depthTotal += data[i].depthData.data.depthRatio
-          count++
-        } catch (err) {
-          console.log(err)
-        }
+        data[i].ROBS?.ROBSb && ROBSbTotal.push(data[i].ROBS.ROBSb)
+        data[i].ROBS?.ROBSb && ROBSaTotal.push(data[i].ROBS.ROBSb)
+        data[i].depthData?.data?.spread && (spreadTotal.push(data[i].depthData.data.spread))
+        data[i].depthData?.data?.depthRatio && (depthTotal.push(data[i].depthData.data.depthRatio) && count++)
+        // if (data[i].ROBS?.ROBSb && data[i].ROBS?.ROBSb && data[i].depthData?.data?.spread && data[i].depthData?.data?.depthRatio) {
+        //   try {
+        //     ROBSbTotal.push(data[i].ROBS.ROBSb)
+        //     ROBSaTotal.push(data[i].ROBS.ROBSb)
+        //     spreadTotal.push(data[i].depthData.data.spread)
+        //     depthTotal.push(data[i].depthData.data.depthRatio)
+        //     count++
+        //   } catch (err) {
+        //     console.log(err)
+        //   }
+        // }
       }
-      const ROBSbAvg = ROBSbTotal / count
-      const ROBSaAvg = ROBSaTotal / count
-      const spreadAvg = spreadTotal / count
-      const depthAvg = depthTotal / count
+      const ROBSbAvg = ROBSbTotal[Math.round(ROBSbTotal.length/2)]
+      const ROBSaAvg = ROBSaTotal[Math.round(ROBSaTotal.length/2)]
+      const spreadAvg = spreadTotal[Math.round(spreadTotal.length/2)]
+      const depthAvg = depthTotal[Math.round(depthTotal.length/2)]
+      console.log(ROBSbTotal.length)
       setAverages(prev => {
         return {...prev, ROBSbAvg, ROBSaAvg, spreadAvg, depthAvg}
       })
@@ -84,6 +90,10 @@ export default function Screener(props) {
                   return {field: "spread", ascending: !prev.ascending}
                 })}>Spread</span>
                     <ExtraInfo textContent = {"The percent difference between the best ask and best bid."} />
+                </div>
+                <div className='description-row description-row-7 row'>
+                  <span onClick={() => setSorting(prev => ({field: "volume", ascending: !prev.ascending}))}>Recent volume</span>
+                  <ExtraInfo textContent = {"Shows you recent average volume"} />
                 </div>
             </div>
             {data?.map((obj, index) => {

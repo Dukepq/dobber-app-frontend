@@ -7,14 +7,18 @@ export const sortBySpread = (array) => {
 
   export const sortByROBSa = (array) => {
     const sorted = array?.sort((x, y) => {
-      return x.ROBS?.ROBSa - y.ROBS?.ROBSa
+      if ((x.ROBS?.ROBSa || Infinity) < (y.ROBS?.ROBSa || Infinity)) return -1
+      if ((x.ROBS?.ROBSa || Infinity) > (y.ROBS?.ROBSa || Infinity)) return 1
+      return 0
     })
     return sorted
   }
   
   export const sortByROBSb = (array) => {
     const sorted = array?.sort((x, y) => {
-      return x.ROBS?.ROBSb - y.ROBS?.ROBSb
+      if ((x.ROBS?.ROBSb || Infinity) < (y.ROBS?.ROBSb || Infinity)) return -1
+      if ((x.ROBS?.ROBSb || Infinity) > (y.ROBS?.ROBSb || Infinity)) return 1
+      return 0
     })
     return sorted
   }
@@ -40,6 +44,13 @@ export const sortBySpread = (array) => {
       if (a?.depthData?.exchange.toUpperCase() < b?.depthData?.exchange.toUpperCase()) return -1
       if (a?.depthData?.exchange.toUpperCase() > b?.depthData?.exchange.toUpperCase()) return 1
       return 0
+    })
+    return sorted
+  }
+
+  export const sortByVolume = (array) => {
+    const sorted = array?.sort((a, b) => {
+      return (a.volumeData.averageVolume * a.depthData.data.price) - (b.volumeData.averageVolume * b.depthData.data.price)
     })
     return sorted
   }

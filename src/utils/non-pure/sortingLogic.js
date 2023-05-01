@@ -1,9 +1,12 @@
-import {sortBySpread,
+import {
+  sortBySpread,
   sortByROBSa,
   sortByROBSb,
   sortByDepthRatio,
   sortByName,
-  sortByExchangeName} from './sortingFuncs.js'
+  sortByExchangeName,
+  sortByVolume  
+} from './sortingFuncs.js'
 
 // add cases to this when you add rows containing different data
 function sortingLogic(sorting, array) {
@@ -27,6 +30,9 @@ function sortingLogic(sorting, array) {
         break
       case "name":
         sortedArray = sortByName(array)
+        break
+      case "volume":
+        sortedArray = sortByVolume(array)
         break
     }
     return sorting.ascending ? sortedArray : sortedArray.reverse()
