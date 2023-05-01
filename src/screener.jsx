@@ -3,12 +3,12 @@ import './App.css'
 import Navbar from './navbar'
 import AnalyticsColumns from './AnalyticsColumns'
 import sortingLogic from './sortingLogic'
+import ExtraInfo from './extraInfo'
 
 export default function Screener(props) {
     const [sorting, setSorting] = useState({field: "", ascending: false})
     const [data, setData] = useState(props.data)
     const [averages, setAverages] = useState({ROBSbAvg: 0, ROBSaAvg: 0, spreadAvg: 0, depthAvg: 0})
-    const [hovered, setHovered] = useState(false)
     useEffect(() => {
         calcAverages(props.data)
         setData(prev => {
@@ -53,9 +53,6 @@ export default function Screener(props) {
         return {...prev, ROBSbAvg, ROBSaAvg, spreadAvg, depthAvg}
       })
     }
-    const toggleHover = () => {
-        setHovered(prev => !prev)
-    }
     return (
       <>
         <main className="main">
@@ -63,47 +60,30 @@ export default function Screener(props) {
             <div className="description-col col">
                 <div className='description-row description-row-1 row'>
                     <span onClick={() => setSorting(prev => ({field: "name", ascending: !prev.ascending}))}>Name</span>
-                    <div className='hover-container'>
-                        <p className={`display-on-hover ${hovered ? "active" : ""}`} >Lorem Ipsum, here goes a great explenation of how this works</p>
-                        <img className={`exclamation`} src="exclamation.svg" onMouseEnter={toggleHover} onMouseLeave={toggleHover} alt="" />
-                    </div>
+                    <ExtraInfo textContent = {"The relevant pair"}/>
                     </div>
                 <div className='description-row description-row-2 row'>
                     <span onClick={() => setSorting(prev => ({field: "exchange", ascending: !prev.ascending}))}>Exchange</span>
-                    <div>
-                        <p className={`display-on-hover ${hovered ? "active" : ""}`} >Lorem Ipsum, here goes a great explenation of how this works</p>
-                        <img className={`exclamation`} src="exclamation.svg" onMouseEnter={toggleHover} onMouseLeave={toggleHover} alt="" />
-                    </div>
+                    <ExtraInfo textContent = {"The exchange this pair is trading on."} />
                     </div>
                 <div className='description-row description-row-3 row'>
                     <span onClick={() => setSorting(prev => ({field: "ROBSa", ascending: !prev.ascending}))}>ROBSa</span>
-                    <div>
-                        <p className={`display-on-hover ${hovered ? "active" : ""}`} >Lorem Ipsum, here goes a great explenation of how this works</p>
-                        <img className={`exclamation`} src="exclamation.svg" onMouseEnter={toggleHover} onMouseLeave={toggleHover} alt="" />
-                    </div>
+                    <ExtraInfo textContent = {"A measure of upward order book strength."} />
                     </div>
                 <div className='description-row description-row-4 row'>
                     <span onClick={() => setSorting(prev => ({field: "ROBSb", ascending: !prev.ascending}))}>ROBSb</span>
-                    <div>
-                        <p className={`display-on-hover ${hovered ? "active" : ""}`} >Lorem Ipsum, here goes a great explenation of how this works</p>
-                        <img className={`exclamation`} src="exclamation.svg" onMouseEnter={toggleHover} onMouseLeave={toggleHover} alt="" />
-                    </div>
+                    <ExtraInfo textContent = {"A measure of downward order book strength."} />
                     </div>
                 <div className='description-row description-row-5 row'>
                     <span onClick={() => setSorting(prev => ({field: "depth", ascending: !prev.ascending}))}>Depth ratio</span>
-                    <div>
-                        <p className={`display-on-hover ${hovered ? "active" : ""}`} >Lorem Ipsum, here goes a great explenation of how this works</p>
-                        <img className={`exclamation`} src="exclamation.svg" onMouseEnter={toggleHover} onMouseLeave={toggleHover} alt="" />
-                    </div>
+                    <ExtraInfo textContent = {"The ratio of bids and asks."} />
                     </div>
                 <div className='description-row description-row-6 row'>
                     <span onClick={() => setSorting((prev) => {
                   // console.log('prev state ' + prev.field, prev.ascending)
                   return {field: "spread", ascending: !prev.ascending}
                 })}>Spread</span>
-                    <div>
-                        <img className="exclamation" src="exclamation.svg" alt="" />
-                    </div>
+                    <ExtraInfo textContent = {"The percent difference between the best ask and best bid."} />
                 </div>
             </div>
             {data?.map((obj, index) => {
