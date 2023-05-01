@@ -5,7 +5,6 @@ export default function ExtraInfo(props) {
     const handleHover = () => {
         setHovered(prev => !prev)
     }
-
     return (
         <div className='hover-container'>
             <p className={`display-on-hover ${hovered ? "active" : ""}`} >{props.textContent}</p>

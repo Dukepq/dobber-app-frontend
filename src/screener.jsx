@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-import './App.css'
+import './assets/App.css'
 import Navbar from './navbar'
 import AnalyticsColumns from './AnalyticsColumns'
-import sortingLogic from './sortingLogic'
-import ExtraInfo from './extraInfo'
+import sortingLogic from './utils/non-pure/sortingLogic'
+import ExtraInfo from './components/extraInfo'
 
 export default function Screener(props) {
     const [sorting, setSorting] = useState({field: "", ascending: false})

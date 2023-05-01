@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import './App.css'
+import './assets/App.css'
 import Navbar from './navbar'
 import Screener from './screener'
 
