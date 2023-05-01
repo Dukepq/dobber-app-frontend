@@ -50,11 +50,16 @@ export default function Screener(props) {
         //   }
         // }
       }
+      ROBSbTotal.sort()
+      ROBSaTotal.sort()
+      spreadTotal.sort()
+      depthTotal.sort()
+      
       const ROBSbAvg = ROBSbTotal[Math.round(ROBSbTotal.length/2)]
       const ROBSaAvg = ROBSaTotal[Math.round(ROBSaTotal.length/2)]
       const spreadAvg = spreadTotal[Math.round(spreadTotal.length/2)]
       const depthAvg = depthTotal[Math.round(depthTotal.length/2)]
-      console.log(ROBSbTotal.length)
+      console.log(ROBSbTotal)
       setAverages(prev => {
         return {...prev, ROBSbAvg, ROBSaAvg, spreadAvg, depthAvg}
       })
