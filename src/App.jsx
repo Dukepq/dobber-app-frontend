@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
 import './assets/App.css'
 import Navbar from './navbar'
-import Screener from './screener'
+import Screener from './pages/screener/screener'
 import specificView from './specificPairView'
-import TopScreenerSection from './topScreenerSection'
+import TopScreenerSection from './pages/screener/topScreenerSection'
+import NotFound from './pages/404/404'
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 
 
 function App() {
@@ -39,8 +41,12 @@ function App() {
   return (
     <>
       < Navbar />
-      < TopScreenerSection />
-      < Screener data = {data}/>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/app' element={< Screener data = {data}/>}></Route>
+          <Route path="*" element={<NotFound/>}></Route>
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }

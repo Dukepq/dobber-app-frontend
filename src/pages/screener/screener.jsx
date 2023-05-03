@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
-import './assets/App.css'
+import '../../assets/App.css'
 import AnalyticsColumns from './AnalyticsColumns'
-import sortingLogic from './utils/non-pure/sortingLogic'
-import ExtraInfo from './components/extraInfo'
+import sortingLogic from '../../utils/non-pure/sortingLogic'
+import ExtraInfo from '../../components/extraInfo'
+import TopScreenerSection from './topScreenerSection'
 
 export default function Screener(props) {
     const [sorting, setSorting] = useState({field: "", ascending: false})
@@ -66,6 +67,7 @@ export default function Screener(props) {
     }
     return (
       <>
+        <TopScreenerSection />
         <main className="main">
           <div className='data-wrapper'>
             <div className="description-col col">
@@ -98,7 +100,7 @@ export default function Screener(props) {
                 </div>
                 <div className='description-row description-row-7 row'>
                   <span onClick={() => setSorting(prev => ({field: "volume", ascending: !prev.ascending}))}>Recent volume</span>
-                  <ExtraInfo textContent = {"Shows you recent average volume"} />
+                  <ExtraInfo textContent = {"Shows you recent average volume (€/min)"} />
                 </div>
             </div>
             {data?.map((obj, index) => {
