@@ -3,9 +3,29 @@
   font-weight: 500;
 
   --primary-color-1: rgb(45, 42, 59);
+  --primary-color-2: rgb(255, 255, 255);
+  --primary-color-3: #1F1F1F;
   --color-purp: #3419DD;
   --color-black: #0B0B0B;
   --color-dark-grey: #1F1F1F;
   --color-grey: #323232;
+  --nav-width: 6rem;
+  font-size: 18px;
 }
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color-1: rgb(45, 42, 59);
+    --primary-color-2: rgb(255, 255, 255);
+    --primary-color-3: #1F1F1F;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --primary-color-1: rgb(228, 228, 228);
+    --primary-color-2: rgb(0, 0, 0);
+    --primary-color-3: rgb(157, 144, 228);
+  }
+} */
 

@@ -7,20 +7,20 @@
 }
 
 #root {
-    background-color: var(--primary-color-1);
+    background: linear-gradient(170deg, rgba(84,69,156,1) 0%, rgba(45,42,59,1) 10%, rgba(45,42,59,1) 100%);
 }
 
 /* main stuff */
 
 main {
     min-height: 100vh;
-    margin-left: 6rem;
-    width: calc(100% - 6rem);
+    margin-left: var(--nav-width);
+    width: calc(100% - var(--nav-width));
     padding: 2%;
 }
 
 .data-wrapper {
-    color: white;
+    color: var(--primary-color-2);
     width: 100%;
     min-width: 1100px;
     /* border: 6px solid var(--color-dark-grey);
@@ -49,9 +49,10 @@ main {
 }
 
 
+
 .description-col {
     height: 3.6rem;
-    background-color: var(--color-dark-grey);
+    background-color: var(--primary-color-3);
     filter: drop-shadow(0px 6px 12px rgba(60, 45, 81, 0.238));
     border-bottom: none;
     position: sticky;
@@ -143,27 +144,72 @@ main {
 .top-wrapper {
     justify-content: center;
     display: flex;
-    width: calc(100% - 6rem);
+    width: calc(100% - var(--nav-width));
+    min-height: 15rem;
     height: 30vh;
-    margin-left: 6rem;
+    margin-left: var(--nav-width);
     gap: 2rem;
     padding: 2% 2% 0 2%;
     min-width: 1100px;
 }
 
 .top-wrapper > div {
-    background-color: var(--color-dark-grey);
+    background-color: var(--primary-color-3);
     height: 100%;
     border-radius: 0.2rem;
     filter: drop-shadow(0px 6px 12px rgba(60, 45, 81, 0.238));
-    display: grid;
-    place-content: center;
+
     color: white;
 }
 .top-wrapper > div:nth-child(1) {
-    width: calc(1/3 * 100%)
+    width: calc(1/3 * 100%);
+    display: grid;
+    place-content: center;
 }
 
-.top-wrapper > div:nth-child(2) {
-    width: calc(2/3 * 100%)
+.top-right-section {
+    width: calc(2/3 * 100%);
+    display: flex;
+    overflow: hidden;
+
+}
+
+.top-right-section > div {
+    flex-grow: 1;
+    padding: 1rem;
+}
+.top-right-section > div:first-child {
+    background-color: transparent;
+}
+.top-right-section > div:nth-child(2) {
+    background-color: transparent;
+}
+.top-right-section > div:last-child {
+    background-color: transparent;
+}
+
+.segment-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+}
+
+.segment-header {
+    display: flex;
+    align-items: end;
+    gap: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.393);
+}
+
+.segment-data {
+    font-size: 0.8rem;
+    font-weight: 300;
+}
+.segment-name {
+    font-weight: 300;
+}
+
+.day-volume {
+    font-weight: 300;
 }

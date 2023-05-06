@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import '../../assets/App.css'
 import AnalyticsColumns from './AnalyticsColumns'
 import sortingLogic from '../../utils/non-pure/sortingLogic'
 import ExtraInfo from '../../components/extraInfo'
 import TopScreenerSection from './topScreenerSection'
+import Navbar from '../../navbar'
+import { UserContext } from '../../userContext'
 
 export default function Screener(props) {
     const [sorting, setSorting] = useState({field: "", ascending: false})
@@ -60,14 +62,14 @@ export default function Screener(props) {
       const ROBSaAvg = ROBSaTotal[Math.round(ROBSaTotal.length/2)]
       const spreadAvg = spreadTotal[Math.round(spreadTotal.length/2)]
       const depthAvg = depthTotal[Math.round(depthTotal.length/2)]
-      console.log(ROBSbTotal)
       setAverages(prev => {
         return {...prev, ROBSbAvg, ROBSaAvg, spreadAvg, depthAvg}
       })
     }
     return (
       <>
-        <TopScreenerSection />
+        {/* <Navbar /> */}
+        <TopScreenerSection data = {data}/>
         <main className="main">
           <div className='data-wrapper'>
             <div className="description-col col">
@@ -115,6 +117,7 @@ export default function Screener(props) {
                 volumeData = {obj?.volumeData?.averageVolume * obj?.depthData?.data?.price ? obj?.volumeData?.averageVolume * obj?.depthData?.data?.price : null}
                 spread = {obj?.depthData?.data?.spread}
                 averages = {averages}
+                price = {obj?.depthData?.data?.price}
               />
             })}
           </div>

@@ -8,7 +8,7 @@ export default function ExtraInfo(props) {
     return (
         <div className='hover-container'>
             <p className={`display-on-hover ${hovered ? "active" : ""}`} >{props.textContent}</p>
-            <img className={`exclamation`} src="exclamation.svg" onMouseEnter={handleHover} onMouseLeave={handleHover} alt="" />
+            <img className={`exclamation`} src="/exclamation.svg" onMouseEnter={handleHover} onMouseLeave={handleHover} alt="" />
         </div>
     )
 }
