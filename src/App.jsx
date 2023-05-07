@@ -3,12 +3,13 @@ import './assets/App.css'
 import Navbar from './navbar'
 import Screener from './pages/screener/screener'
 import NotFound from './pages/404/404'
-import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 import AuthRequired from './AuthRequired'
 import Login from './pages/login/login'
 import { UserContext } from './userContext'
 import Pair from './pages/pair/pair'
 import Content from './pages/pair/content'
+import {default as extremes} from './extremesDef'
 
 
 function App() {
@@ -19,13 +20,6 @@ function App() {
   })
   const [pairs, setPairs] = useState(() => [])
   const [auth, setAuth] = useState(() => true)
-  // useEffect(() => {
-  //   const stored = window.localStorage.getItem('D_TOKEN_ID')
-  //   console.log(stored);
-  //   if (stored !== null) {
-  //     setKey(JSON.parse(stored))
-  //   }
-  // }, [])
   useEffect(() => {
     window.localStorage.setItem('D_TOKEN_ID', JSON.stringify(key))
   }, [key])
@@ -64,21 +58,19 @@ function App() {
 
   return (
     <>
-      {/* < Navbar /> */}
       <UserContext.Provider value={{key, setKey}}>
       <BrowserRouter>
         <Routes>
             <Route element={<AuthRequired auth={auth} setAuth={setAuth}/>}>
               <Route element={<Navbar />}>
                   <Route path='app' element={< Screener data = {data}/>}/>
-                  <Route path="pair" element={<Pair pairs = {pairs}/>}>
-                    <Route path=":pair" element={< Content data = {data}/>}/>
-                  </Route>
+                    <Route path="pair" element={<Pair pairs = {pairs} data = {data}/>}>
+                      <Route path=":pair" element={< Content data = {data}/>}/>
+                    </Route>
               </Route>
                 <Route path="*" element={<NotFound/>}/>
             </Route>
             <Route path='login' element={<Login auth={auth} setAuth={setAuth}/>}/>
-            
         </Routes>
       </BrowserRouter>
       </UserContext.Provider>

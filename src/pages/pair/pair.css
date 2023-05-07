@@ -47,7 +47,7 @@
     display: block;
     height: 100%;
     border: none;
-    border-radius: 1rem;
+    border-radius: 0.3rem;
     background-color: rgb(45, 73, 73);
     padding-left: .8rem;
     font-size: 0.8rem;
@@ -76,7 +76,7 @@
 .search-nav {
     position: absolute;
     padding: 1rem;
-    background-color: darkslategray;
+    background: linear-gradient(rgba(47, 79, 79, 0.639), rgba(128, 0, 128, 0.392));
     width: 12rem;
     display: flex;
     flex-direction: column;
@@ -109,4 +109,11 @@
     width: 100%;
     min-height: 20vh;
     border-radius: 0.3rem;
+}
+
+.dropdown-menu-pair img {
+    height: 0.9rem;
+    max-width: 0.9rem;
+    margin-left: 0.5rem;
+    
 }

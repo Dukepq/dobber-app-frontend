@@ -8,7 +8,6 @@ export default function Content(props) {
     }, [])
     const {data} = props
     const currentPair = data.find(item => item.depthData.pair === pair)
-    console.log(currentPair)
 
     return (
         <div>

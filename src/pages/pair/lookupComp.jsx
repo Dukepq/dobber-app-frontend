@@ -1,37 +1,13 @@
 import { useState, useEffect } from 'react'
 import lookingGlass from '../../assets/looking-glass.svg'
 import { Link } from 'react-router-dom'
+import handleSymbolSelect from '../../utils/non-pure/handleSymbolSelect'
+
 
 export default function Lookup(props) {
-    const [prevLocation, setPrevLocation] = useState(null)
     const [formData, setFormData] = useState("")
     const {selected, setSelected} = props.selectionHook
-    const {pairs} = props
-    useEffect(() => {
-        setPrevLocation(() => {
-            return JSON.parse(window.localStorage.getItem("DOBBER_LAST_DESTINATION_SPEC"))
-        })
-        
-    }, [])
-    // const checkIfPartOf = (array, shortest) => {
-    //     const mutatedArray = []
-    //     for (let i = 0; i < array.length; i++) {
-    //         console.log(selected)
-    //         if (!selected) {
-    //             return
-    //         }
-    //         const current = array[i]
-    //         if (current.slice(0, shortest.length).toUpperCase() === shortest.toUpperCase() && mutatedArray.length < 20){
-    //             mutatedArray.push(
-    //                 <Link className='dropdown-menu-pair' key={i} to={`/pair/${current}`}>{current}</Link>
-    //             )
-    //         }
-            
-    //     }
-    //     return mutatedArray
-    // }
-
-
+    const {pairs, data} = props
     const handleChange = (e) => {
         setFormData(() => e.target.value)
     }
@@ -41,16 +17,21 @@ export default function Lookup(props) {
             <div className='input-dropdown-wrap'>
                 <input className={selected ? "lookup-input lookup-input-hovered" : "lookup-input"} type="text"
                     value={formData} onChange={handleChange}/>
-                {selected ? (<div className="search-nav">
+                {selected && (<div className="search-nav">
                 {
                 pairs.filter(item => {
                     const searching = formData.toLowerCase()
                     const currentItem = item.toLowerCase()
                     return currentItem.startsWith(searching)
                 }).map((item, index) => {
-                    return <Link className='dropdown-menu-pair' key={index} to={`/pair/${item}`}>{item}</Link>
+                    return <Link className='dropdown-menu-pair'
+                    key={index} to={`/pair/${item}`}>{item}
+                    {
+                        handleSymbolSelect(data, index)
+                    }
+                    </Link>
                 })}
-                </div>) : null}
+                </div>)}
             </div>
         </div>
     )
