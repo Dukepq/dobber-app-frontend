@@ -34,7 +34,7 @@ export default function AnalyticsColumns(props) {
             <div style={{color: ROBSbColor}} className={`row row-4 row-4-col-${props.id ?? 1}`}><span>{props.ROBSb?.toFixed(3) || "low volume"}</span></div>
             <div style={{color: depthColor}} className={`row row-5 row-5-col-${props.id ?? 1}`}><span>{props.depthRatio?.toFixed(3) || "/"}</span></div>
             <div style={{color: spreadColor}} className={`row row-6 row-6-col-${props.id ?? 1}`}><span>{(props.spread * 100).toFixed(3) || "/"}%</span></div>
-            <div style={{color: "white"}} className={`row row-6 row-6-col-${props.id ?? 1}`}><span>{`${(props.volumeData)?.toFixed(2) || "-"}` }</span></div>
+            <div style={{color: "white"}} className={`row row-6 row-6-col-${props.id ?? 1}`}><span>{props.volumeData ? Number((props.volumeData)?.toFixed(2)).toLocaleString() : "0" }</span></div>
         </div>
     )
 }

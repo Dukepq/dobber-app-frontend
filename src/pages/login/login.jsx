@@ -7,7 +7,6 @@ export default function Login(props) {
     const {auth, setAuth} = props
     const [formData, setFormData] = useState("")
     const {key, setKey} = useContext(UserContext)
-    console.log('on login screen t/f', auth)
     const updateFormData = (e) => {
         setFormData(() => e.target.value)
     }
@@ -19,26 +18,26 @@ export default function Login(props) {
         }
         setFormData(() => "")
     }
-     useEffect(() => {
-        console.log("key: ", {key})
-        fetch("http://localhost:5003/val", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            token: key
-        })
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.success) {
-            setAuth(() => true)
-        } else {
-            setAuth(() => false)
-        }
-    })
-    }, [key])
+    //  useEffect(() => {
+    //     console.log("key: ", {key})
+    //     fetch("http://localhost:5003/val", {
+    //     method: "POST",
+    //     headers: {
+    //         "Content-Type": "application/json"
+    //     },
+    //     body: JSON.stringify({
+    //         token: key
+    //     })
+    // })
+    // .then(res => res.json())
+    // .then(data => {
+    //     if (data.success) {
+    //         setAuth(() => true)
+    //     } else {
+    //         setAuth(() => false)
+    //     }
+    // })
+    // }, [key])
 
     if (auth) return <Navigate to="/app" />
     return (

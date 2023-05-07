@@ -57,19 +57,9 @@
     background-color: rgba(0, 128, 0, 1);
 }
 
-.err-links a:first-child:hover {
-    background-color: rgb(132, 132, 198);
-}
-
-.err-links a:last-child:hover {
-    background-color: rgb(8, 135, 8);
-}
-
 .err-links a:hover {
-    background-color: rgb(129, 6, 244);
+    filter: brightness(1.1);
 }
-
-
 
 @media (max-width: 600px) {
 

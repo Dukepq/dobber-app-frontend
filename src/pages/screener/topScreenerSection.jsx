@@ -24,8 +24,6 @@ export default function TopScreenerSection(props) {
                     return pairs
                 })
             })
-    }, [])  
-    useEffect(() => {
         const interval = setInterval(() => {
             fetch('http://localhost:5003/api/v1/daily/largest')
             .then(res => res.json())
@@ -49,7 +47,7 @@ export default function TopScreenerSection(props) {
         <div className="top-wrapper">
             <div className="top-left-section">
                 <h2>24H EXCHANGE VOLUME</h2>
-                <p>{`${volumeToday?.toFixed(2)}€`}</p>
+                <p>{`${volumeToday?.toLocaleString()}€`}</p>
             </div>
             <div className="top-right-section">
                 {largestPairs?.map((item, index) => {

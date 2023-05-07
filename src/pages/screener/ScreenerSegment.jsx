@@ -8,7 +8,7 @@ export default function ScreenerSegment(props) {
         <div className="segment-wrapper">
             <div className="segment-header">
                 <h3>{props.pair}</h3>
-                <p className="day-volume">{`${props.volumeQuote ? props.volumeQuote : "..."}€`}</p>
+                <p className="day-volume">{`${Number(props.volumeQuote) ? Number(props.volumeQuote).toLocaleString() : "..."}€`}</p>
             </div>
             <div className="segment-chunk">
                 <p className="segment-name">ROBSa</p>

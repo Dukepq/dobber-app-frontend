@@ -18,7 +18,7 @@ export default function Navbar() {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/abc">
+                    <Link to="/pair">
                         <img aria-hidden="true" className="navbar-item-image"src="/flame.svg" alt="" />
                         <span className='nav-text'>Volatile</span>
                     </Link>

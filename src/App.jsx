@@ -7,7 +7,8 @@ import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom"
 import AuthRequired from './AuthRequired'
 import Login from './pages/login/login'
 import { UserContext } from './userContext'
-
+import Pair from './pages/pair/pair'
+import Content from './pages/pair/content'
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
     const item = window.localStorage.getItem('D_TOKEN_ID')
     return JSON.parse(item) || ""
   })
+  const [pairs, setPairs] = useState(() => [])
   const [auth, setAuth] = useState(() => true)
   // useEffect(() => {
   //   const stored = window.localStorage.getItem('D_TOKEN_ID')
@@ -27,14 +29,15 @@ function App() {
   useEffect(() => {
     window.localStorage.setItem('D_TOKEN_ID', JSON.stringify(key))
   }, [key])
-
   useEffect(() => {
-    console.log('initial useEffect ran')
     fetch('http://localhost:5003/api/v1/data')
         .then(res => res.json())
         .then(data => {
-          const array = Object.keys(data.data).map(key => data.data[key])
-          setData((prev) => array)
+          const ObjPairs = Object.keys(data.data)
+          const array = ObjPairs.map(key => data.data[key])
+          
+          setPairs(() => ObjPairs)
+          setData(() => array)
         })
         .catch(err => console.log(err))
   }, [])
@@ -43,8 +46,12 @@ function App() {
       fetch('http://localhost:5003/api/v1/data')
         .then(res => res.json())
         .then(data => {
-          const array = Object.keys(data.data).map(key => data.data[key])
+          const ObjPairs = Object.keys(data.data)
+          const array = ObjPairs.map(key => data.data[key])
+          
+          setPairs(() => ObjPairs)
           setData(() => array)
+          
         })
         .catch(err => console.log(err))
     }, 6000)
@@ -53,7 +60,7 @@ function App() {
           clearInterval(interval)
         }
       }
-  }, [data])
+  }, []) //--data
 
   return (
     <>
@@ -64,6 +71,9 @@ function App() {
             <Route element={<AuthRequired auth={auth} setAuth={setAuth}/>}>
               <Route element={<Navbar />}>
                   <Route path='app' element={< Screener data = {data}/>}/>
+                  <Route path="pair" element={<Pair pairs = {pairs}/>}>
+                    <Route path=":pair" element={< Content data = {data}/>}/>
+                  </Route>
               </Route>
                 <Route path="*" element={<NotFound/>}/>
             </Route>

@@ -1,0 +1,112 @@
+.pair-wrapper {
+    margin-left: var(--nav-width);
+    width: calc(100% - var(--nav-width));
+    height: 100vh;
+    color: var(--primary-color-2);
+    padding: 2rem;
+    background: linear-gradient(170deg, rgba(84,69,156,1) 0%, rgba(45,42,59,1) 20%, rgba(45,42,59,1) 100%);
+    overflow: hidden;
+}
+.content-wrapper {
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-color-3);
+    border-radius: 0.3rem;
+    padding: 1rem;
+    animation: slide-in-pair 390ms ease forwards;
+}
+
+@keyframes slide-in-pair {
+    from {transform: translateX(-100%)}
+    to {transform: translateX(0)}
+}
+
+.pair-content-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.2rem;
+}
+
+
+.lookup-content-wrapper {
+    height: 1.8rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+
+
+.looking-glass-img {
+    height: 75%;
+
+}
+
+.lookup-input {
+    display: block;
+    height: 100%;
+    border: none;
+    border-radius: 1rem;
+    background-color: rgb(45, 73, 73);
+    padding-left: .8rem;
+    font-size: 0.8rem;
+    color: white;
+    width: 100%;
+    transition: border-radius 300ms ease
+}
+
+.lookup-input-hovered {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    transition: 100ms;
+}
+
+.lookup-input:focus{
+    border: none;
+    outline: none;
+}
+
+
+.input-dropdown-wrap {
+    height: 100%;
+    width: 12rem;
+}
+
+.search-nav {
+    position: absolute;
+    padding: 1rem;
+    background-color: darkslategray;
+    width: 12rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    /* animation: menu-expand 300ms ease forwards */
+    max-height: 50vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.dropdown-menu-pair {
+    color: white;
+}
+
+.search-nav::-webkit-scrollbar {
+    width: 0;
+}
+
+
+/* @keyframes menu-expand {
+    from {transform: translateX(100%)}
+    to {transform: translateX(0)}
+} */
+
+.lookup-content {
+    background-color: rgba(46, 46, 145, 0.153);
+    width: 100%;
+    min-height: 20vh;
+    border-radius: 0.3rem;
+}

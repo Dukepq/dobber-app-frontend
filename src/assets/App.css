@@ -199,7 +199,9 @@ main {
     display: flex;
     align-items: end;
     gap: 1rem;
+    background: linear-gradient(0deg, rgba(84,69,156,1) 0%, rgba(45,42,59,1) 10%, rgba(45,42,59,0) 100%);
     border-bottom: 1px solid rgba(255, 255, 255, 0.393);
+    border-top: 1px solid rgba(255, 255, 255, 0.393);
 }
 
 .segment-data {
