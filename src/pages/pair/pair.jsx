@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom"
 
 export default function Pair(props) {
     const [selected, setSelected] = useState(() => false)
-    const {data, pairs} = props
+    const {data, dataObject, pairs} = props
     return (
         <div className="pair-wrapper">
             <div className="content-wrapper">
@@ -15,6 +15,7 @@ export default function Pair(props) {
                     selectionHook = {{selected, setSelected}}
                     pairs = {pairs}
                     data = {data}
+                    dataObject = {dataObject}
                     />
                 </nav>
                 <div className="lookup-content">

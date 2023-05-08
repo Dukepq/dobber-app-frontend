@@ -36,7 +36,7 @@ export default function Navbar() {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/abc">
+                    <Link to="abc">
                         <img aria-hidden="true" className="navbar-item-image"src="/leave.svg" alt="" />
                         <span className='nav-text'>Exit</span>
                     </Link>

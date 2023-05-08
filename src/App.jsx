@@ -20,6 +20,7 @@ function App() {
   })
   const [pairs, setPairs] = useState(() => [])
   const [auth, setAuth] = useState(() => true)
+  const [dataObject, setDataObject] = useState(() => {})
   useEffect(() => {
     window.localStorage.setItem('D_TOKEN_ID', JSON.stringify(key))
   }, [key])
@@ -27,6 +28,7 @@ function App() {
     fetch('http://localhost:5003/api/v1/data')
         .then(res => res.json())
         .then(data => {
+          setDataObject(() => data.data)
           const ObjPairs = Object.keys(data.data)
           const array = ObjPairs.map(key => data.data[key])
           
@@ -40,6 +42,7 @@ function App() {
       fetch('http://localhost:5003/api/v1/data')
         .then(res => res.json())
         .then(data => {
+          setDataObject(() => data.data)
           const ObjPairs = Object.keys(data.data)
           const array = ObjPairs.map(key => data.data[key])
           
@@ -55,7 +58,6 @@ function App() {
         }
       }
   }, []) //--data
-
   return (
     <>
       <UserContext.Provider value={{key, setKey}}>
@@ -64,7 +66,7 @@ function App() {
             <Route element={<AuthRequired auth={auth} setAuth={setAuth}/>}>
               <Route element={<Navbar />}>
                   <Route path='app' element={< Screener data = {data}/>}/>
-                    <Route path="pair" element={<Pair pairs = {pairs} data = {data}/>}>
+                    <Route path="pair" element={<Pair pairs = {pairs} data = {data} dataObject = {dataObject}/>}>
                       <Route path=":pair" element={< Content data = {data}/>}/>
                     </Route>
               </Route>
