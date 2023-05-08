@@ -72,35 +72,35 @@ export default function Screener(props) {
         <TopScreenerSection data = {data}/>
         <main className="main">
           <div className='data-wrapper'>
-            <div className="description-col col">
-                <div className='description-row description-row-1 row'>
+            <div className="description-row row">
+                <div className='description-col description-col-1 col'>
                     <span onClick={() => setSorting(prev => ({field: "name", ascending: !prev.ascending}))}>Name</span>
                     <ExtraInfo textContent = {"The relevant pair"}/>
                     </div>
-                <div className='description-row description-row-2 row'>
+                <div className='description-col description-col-2 col'>
                     <span onClick={() => setSorting(prev => ({field: "exchange", ascending: !prev.ascending}))}>Exchange</span>
                     <ExtraInfo textContent = {"The exchange this pair is trading on."} />
                     </div>
-                <div className='description-row description-row-3 row'>
+                <div className='description-col description-col-3 col'>
                     <span onClick={() => setSorting(prev => ({field: "ROBSa", ascending: !prev.ascending}))}>ROBSa</span>
                     <ExtraInfo textContent = {"A measure of upward order book strength."} />
                     </div>
-                <div className='description-row description-row-4 row'>
+                <div className='description-col description-col-4 col'>
                     <span onClick={() => setSorting(prev => ({field: "ROBSb", ascending: !prev.ascending}))}>ROBSb</span>
                     <ExtraInfo textContent = {"A measure of downward order book strength."} />
                     </div>
-                <div className='description-row description-row-5 row'>
+                <div className='description-col description-col-5 col'>
                     <span onClick={() => setSorting(prev => ({field: "depth", ascending: !prev.ascending}))}>Depth ratio</span>
                     <ExtraInfo textContent = {"The ratio of bids and asks."} />
                     </div>
-                <div className='description-row description-row-6 row'>
+                <div className='description-col description-col-6 col'>
                     <span onClick={() => setSorting((prev) => {
                   // console.log('prev state ' + prev.field, prev.ascending)
                   return {field: "spread", ascending: !prev.ascending}
                 })}>Spread</span>
                     <ExtraInfo textContent = {"The percent difference between the best ask and best bid."} />
                 </div>
-                <div className='description-row description-row-7 row'>
+                <div className='description-col description-col-7 col'>
                   <span onClick={() => setSorting(prev => ({field: "volume", ascending: !prev.ascending}))}>Recent volume</span>
                   <ExtraInfo textContent = {"Shows you recent average volume (€/min)"} />
                 </div>

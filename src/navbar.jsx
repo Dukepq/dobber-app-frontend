@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import "./assets/navbar.css"
 import {Link, Outlet} from "react-router-dom"
-
+import lookingGlassImage from "./assets/looking-glass.svg"
 
 export default function Navbar() {
     return (
@@ -12,25 +12,25 @@ export default function Navbar() {
                     <img className='nav-logo' src="/DobberLogo.svg" alt="logo" />
                 </li>
                 <li>
-                    <Link to="/app">
+                    <Link to="/home">
                         <img aria-hidden="true" className="navbar-item-image"src="/home.svg" alt="" />
                         <span className='nav-text'>Homepage</span>
                     </Link>
                 </li>
                 <li>
                     <Link to="/pair">
-                        <img aria-hidden="true" className="navbar-item-image"src="/flame.svg" alt="" />
-                        <span className='nav-text'>Volatile</span>
+                        <img aria-hidden="true" className="navbar-item-image"src={lookingGlassImage} alt="" />
+                        <span className='nav-text'>Search</span>
                     </Link>
                 </li>
                 <li>
-                    <Link to="/abc">
+                    <Link to="/app">
                         <img aria-hidden="true" className="navbar-item-image"src="/coins-solid.svg" alt="" />
                         <span className='nav-text'>Screener</span>
                     </Link>
                 </li>
                 <li>
-                    <Link to="/abc">
+                    <Link to="/docs">
                         <img aria-hidden="true" className="navbar-item-image"src="/docs-icon.svg" alt="" />
                         <span className='nav-text'>Docs</span>
                     </Link>

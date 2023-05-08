@@ -8,9 +8,10 @@ export default function NotFound() {
                 <h1 className="err">Oops! We couldn't find that page.</h1>
                 <p className="err-suggested">Maybe you can find what you're looking for here:</p>
                 <div className="err-links">
-                    <Link to="/app">Homepage</Link>
-                    <Link to="/app">App</Link>
-                    <Link to="/app">Docs</Link>
+                    <Link to="/home">Homepage</Link>
+                    <Link to="/app">Screener</Link>
+                    <Link to="/docs">Docs</Link>
+                    <Link to="/pair">Search</Link>
                 </div>
             </div>
         </div>

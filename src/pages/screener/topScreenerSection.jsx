@@ -47,7 +47,7 @@ export default function TopScreenerSection(props) {
         <div className="top-wrapper">
             <div className="top-left-section">
                 <h2>24H EXCHANGE VOLUME</h2>
-                <p>{`${volumeToday?.toLocaleString()}€`}</p>
+                <p>{volumeToday?.toLocaleString('de-DE', {style: "currency", currency: "EUR", maximumFractionDigits: 6})}</p>
             </div>
             <div className="top-right-section">
                 {largestPairs?.map((item, index) => {

@@ -7,10 +7,27 @@ export default function Pair(props) {
     const [selected, setSelected] = useState(() => false)
     const {data, dataObject, pairs} = props
     return (
-        <div className="pair-wrapper">
+        <div className="pair-wrapper" onClick={() => {
+            selected && setSelected(() => false)
+        }}>
             <div className="content-wrapper">
                 <nav className="pair-content-nav">
-                    <p>placeholder text</p>
+                    <p className="search-header">SEARCH</p>
+                    <div className="search-header-spacer">
+                        <p></p>
+                        <div className="forecast-el">
+                            <p></p>
+                            <img src="" alt="" />
+                        </div>
+                        <div className="forecast-el">
+                            <p></p>
+                            <img src="" alt="" />
+                        </div>
+                        <div className="forecast-el">
+                            <p></p>
+                            <img src="" alt="" />
+                        </div>
+                    </div>
                     < Lookup
                     selectionHook = {{selected, setSelected}}
                     pairs = {pairs}

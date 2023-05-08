@@ -10,6 +10,8 @@ import { UserContext } from './userContext'
 import Pair from './pages/pair/pair'
 import Content from './pages/pair/content'
 import {default as extremes} from './extremesDef'
+import Homepage from './pages/homepage/homepage'
+import Docs from './pages/docs/docs'
 
 
 function App() {
@@ -21,6 +23,11 @@ function App() {
   const [pairs, setPairs] = useState(() => [])
   const [auth, setAuth] = useState(() => true)
   const [dataObject, setDataObject] = useState(() => {})
+  const [userSelection, setUserSelection] = useState(() => {
+    const item = JSON.parse(window.localStorage.getItem("DOBBER_USER_PREFERRED_SELECTION#981")) || []
+    console.log(typeof([item][0]))
+    return item
+})
   useEffect(() => {
     window.localStorage.setItem('D_TOKEN_ID', JSON.stringify(key))
   }, [key])
@@ -65,9 +72,13 @@ function App() {
         <Routes>
             <Route element={<AuthRequired auth={auth} setAuth={setAuth}/>}>
               <Route element={<Navbar />}>
+                <Route path='home' element={< Homepage
+                dataObject = {dataObject} pairs = {pairs} data = {data} userSelectionHooks = {{userSelection, setUserSelection}}
+                />}/>
+                <Route path='docs' element={< Docs />} />
                   <Route path='app' element={< Screener data = {data}/>}/>
                     <Route path="pair" element={<Pair pairs = {pairs} data = {data} dataObject = {dataObject}/>}>
-                      <Route path=":pair" element={< Content data = {data}/>}/>
+                      <Route path=":pair" element={< Content data = {data} dataObject = {dataObject}/>}/>
                     </Route>
               </Route>
                 <Route path="*" element={<NotFound/>}/>

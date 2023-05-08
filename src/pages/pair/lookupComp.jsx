@@ -5,7 +5,7 @@ import spreadImage from '../../assets/spread.svg'
 import lowLqImage from '../../assets/lowLiquidity.svg'
 import volumeImage from '../../assets/water.svg'
 import risingImage from '../../assets/rising.svg'
-
+import extremesDef from '../../extremesDef'
 
 export default function Lookup(props) {
     const [formData, setFormData] = useState("")
@@ -14,12 +14,13 @@ export default function Lookup(props) {
     const handleChange = (e) => {
         setFormData(() => e.target.value)
     }
+
     return (
-        <div className='lookup-content-wrapper' onMouseEnter={() => setSelected(true)} onMouseLeave={() => setSelected(false)}>
+        <div className='lookup-content-wrapper'>
             <img className='looking-glass-img' src={lookingGlass} alt="" />
             <div className='input-dropdown-wrap'>
                 <input className={selected ? "lookup-input lookup-input-hovered" : "lookup-input"} type="text"
-                    value={formData} onChange={handleChange}/>
+                    value={formData} onChange={handleChange} onClick={() => setSelected(prev => !prev)}/>
                 {selected && (<div className="search-nav">
                 {
                 pairs.filter(item => {
@@ -27,17 +28,16 @@ export default function Lookup(props) {
                     const currentItem = item.toLowerCase()
                     return currentItem.startsWith(searching)
                 }).map((item, index) => {
-                    return <Link className='dropdown-menu-pair' // getting data by index, need to get data from an object
-                    key={index} to={`/pair/${item}`}>{item}
+                    return <div className='dropdown-menu-pair' key={index}><Link // getting data by index, need to get data from an object
+                    to={`/pair/${item}`}>{item}
                     {
-                        (Number(dataObject[item]?.depthData?.data?.depthRatio) < 0.25 || Number(dataObject[item]?.depthData?.data?.depthRatio) > 4)
-                        ? <img src={risingImage}></img> : (Number(dataObject[item]?.volumeData?.averageVolume) * Number(dataObject[item]?.depthData?.data?.price) > 3000)
-                        ? <img src={volumeImage}></img> : (Number(dataObject[item]?.depthData?.data?.spread) * 100 > 1)
-                        ? <img src={spreadImage}></img> : (Number(dataObject[item]?.ROBS?.ROBSb) < 5 || Number(dataObject[item]?.ROBS?.ROBSa) < 5)
-                        ? <img src={lowLqImage}></img> : null
-                        // handleSymbolSelect(data, index)
+                        (Number(dataObject[item]?.ROBS?.ROBSb) < extremesDef.ROBS || Number(dataObject[item]?.ROBS?.ROBSa) < extremesDef.ROBS)
+                        ? <img src={lowLqImage}></img> : (Number(dataObject[item]?.depthData?.data?.spread) * 100 > extremesDef.spread)
+                        ? <img src={spreadImage}></img> : (Number(dataObject[item]?.volumeData?.averageVolume) * Number(dataObject[item]?.depthData?.data?.price) > extremesDef.recentVolume)
+                        ? <img src={volumeImage}></img> : (Number(dataObject[item]?.depthData?.data?.depthRatio) < extremesDef.depthRatioB || Number(dataObject[item]?.depthData?.data?.depthRatio) > extremesDef.depthRatioA)
+                        ? <img src={risingImage}></img> : null
                     }
-                    </Link>
+                    </Link></div>
                 })}
                 </div>)}
             </div>

@@ -1,0 +1,7 @@
+.docs-page-wrapper {
+    margin-left: var(--nav-width);
+    width: calc(100% - var(--nav-width));
+    height: 100vh;
+    background-color: white;
+    padding: 2rem;
+}

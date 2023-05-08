@@ -1,4 +1,6 @@
 import { useState } from "react"
+import React from 'react'
+import ExclamationIcon from "../assets/exclamation.svg"
 
 export default function ExtraInfo(props) {
     const [hovered, setHovered] = useState(false)
@@ -8,7 +10,7 @@ export default function ExtraInfo(props) {
     return (
         <div className='hover-container'>
             <p className={`display-on-hover ${hovered ? "active" : ""}`} >{props.textContent}</p>
-            <img className={`exclamation`} src="/exclamation.svg" onMouseEnter={handleHover} onMouseLeave={handleHover} alt="" />
+            <img className={`exclamation`} src={ExclamationIcon} onMouseEnter={handleHover} onMouseLeave={handleHover} alt="" />
         </div>
     )
 }

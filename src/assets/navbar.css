@@ -2,7 +2,7 @@
 
 .navigation {
     height: 100dvh;
-    background-color: var(--color-dark-grey);
+    background-color: var(--primary-color-3);
     width: var(--nav-width);
     position: fixed;
     transition: width 300ms;
@@ -62,7 +62,7 @@
 }
 
 .nav-text {
-    font-size: max(0.8rem, calc(1/6 * var(--nav-width)));
+    font-size: max(0.8rem, calc(1/5 * var(--nav-width)));
     display: none;
     margin-left: calc(1/6 * var(--nav-width));
     color: white;

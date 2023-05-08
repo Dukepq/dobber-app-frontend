@@ -8,7 +8,7 @@ export default function ScreenerSegment(props) {
         <div className="segment-wrapper">
             <div className="segment-header">
                 <h3>{props.pair}</h3>
-                <p className="day-volume">{`${Number(props.volumeQuote) ? Number(props.volumeQuote).toLocaleString() : "..."}€`}</p>
+                <p className="day-volume">{`${Number(props.volumeQuote) ? Number(props.volumeQuote).toLocaleString('de-DE', {style: "currency", currency: "EUR"}) : "..."}`}</p>
             </div>
             <div className="segment-chunk">
                 <p className="segment-name">ROBSa</p>
@@ -20,7 +20,8 @@ export default function ScreenerSegment(props) {
             </div>
             <div className="segment-chunk">
                 <p className="segment-name">Recent Volume</p>
-                <p className="segment-data">{((Number(market?.volumeData?.averageVolume?.toFixed(2))) * (Number(market?.depthData?.data?.price)))?.toFixed(2)}</p>
+                <p className="segment-data">{Number(((Number(market?.volumeData?.averageVolume)) * (Number(market?.depthData?.data?.price))).toFixed(2)).toLocaleString('de-DE', {style: "currency", currency: "EUR"})}</p>
+                
             </div>
         </div>
     )
