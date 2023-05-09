@@ -8,7 +8,6 @@
 
 #root {
     background: linear-gradient(170deg, rgba(84,69,156,1) 0%, rgba(45,42,59,1) 10%, rgba(45,42,59,1) 100%);
-    overflow-x: scroll;
 }
 
 /* main stuff */
@@ -23,7 +22,6 @@ main {
 .data-wrapper {
     color: var(--primary-color-2);
     width: 100%;
-    min-width: 1100px;
     /* border: 6px solid var(--color-dark-grey);
     background-color: var(--color-grey); */
     filter: drop-shadow(0px 0px 12px #0000002f);

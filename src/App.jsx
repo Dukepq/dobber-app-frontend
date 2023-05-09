@@ -12,6 +12,7 @@ import Content from './pages/pair/content'
 import {default as extremes} from './extremesDef'
 import Homepage from './pages/homepage/homepage'
 import Docs from './pages/docs/docs'
+import { ThemeProvider } from './useTheme'
 
 
 function App() {
@@ -68,6 +69,7 @@ function App() {
   return (
     <>
       <UserContext.Provider value={{key, setKey}}>
+      <ThemeProvider>
       <BrowserRouter>
         <Routes>
             <Route element={<AuthRequired auth={auth} setAuth={setAuth}/>}>
@@ -86,6 +88,7 @@ function App() {
             <Route path='login' element={<Login auth={auth} setAuth={setAuth}/>}/>
         </Routes>
       </BrowserRouter>
+      </ThemeProvider>
       </UserContext.Provider>
     </>
   )

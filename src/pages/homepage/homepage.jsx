@@ -26,7 +26,7 @@ export default function Homepage(props) {
                 })}
             </div>
             ) : (
-                <div className="homepage-userselected-placeholder">Once you add some favourites, they will show up here</div>
+                <div className="homepage-userselected-placeholder">You don't currently have any favourite pairs</div>
             )}
             
             {userSelection?.length > 0 && <div className="homepage-content-break"></div>}
