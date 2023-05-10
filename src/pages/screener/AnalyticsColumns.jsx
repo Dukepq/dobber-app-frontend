@@ -28,7 +28,7 @@ export default function AnalyticsColumns(props) {
 
     return (
         <div className={`row row-${props.id}`}>
-            <div className={`col col-1 col-1-row-${props.id ?? 1}`}><span><a target="_blank" href={`https://account.bitvavo.com/markets/${props.name}`}>{props.name}</a></span></div>
+            <div className={`col col-1 col-1-row-${props.id ?? 1}`}><span><a target="_blank" href={`https://account.bitvavo.com/markets/${props.name}`}>{`${props.id + 1}. ${props.name}`}</a></span></div>
             <div className={`col col-2 col-2-row-${props.id ?? 1}`}><span>{props.exchange}</span></div>
             <div style={{color: ROBSaColor}} className={`col col-3 col-3-row-${props.id ?? 1}`}><span>{(Number(props.ROBSa?.toFixed(3)) || "low volume").toLocaleString('de-DE')}</span></div>
             <div style={{color: ROBSbColor}} className={`col col-4 col-4-row-${props.id ?? 1}`}><span>{(Number(props.ROBSb?.toFixed(3)) || "low volume").toLocaleString('de-DE')}</span></div>

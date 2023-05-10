@@ -12,8 +12,7 @@ import Content from './pages/pair/content'
 import {default as extremes} from './extremesDef'
 import Homepage from './pages/homepage/homepage'
 import Docs from './pages/docs/docs'
-import { ThemeProvider } from './useTheme'
-
+import { ThemeContext } from './useTheme'
 
 function App() {
   const [data, setData] = useState([])
@@ -21,6 +20,7 @@ function App() {
     const item = window.localStorage.getItem('D_TOKEN_ID')
     return JSON.parse(item) || ""
   })
+  const {theme} = useContext(ThemeContext)
   const [pairs, setPairs] = useState(() => [])
   const [auth, setAuth] = useState(() => true)
   const [dataObject, setDataObject] = useState(() => {})
@@ -67,9 +67,9 @@ function App() {
       }
   }, []) //--data
   return (
-    <>
+    <div id={theme}>
       <UserContext.Provider value={{key, setKey}}>
-      <ThemeProvider>
+      
       <BrowserRouter>
         <Routes>
             <Route element={<AuthRequired auth={auth} setAuth={setAuth}/>}>
@@ -88,9 +88,8 @@ function App() {
             <Route path='login' element={<Login auth={auth} setAuth={setAuth}/>}/>
         </Routes>
       </BrowserRouter>
-      </ThemeProvider>
       </UserContext.Provider>
-    </>
+    </div>
   )
 }
 

@@ -1,9 +1,12 @@
-import {useState} from 'react'
 import "./assets/navbar.css"
 import {Link, Outlet} from "react-router-dom"
 import lookingGlassImage from "./assets/looking-glass.svg"
+import { useContext } from "react"
+import { ThemeContext } from "./useTheme"
 
 export default function Navbar() {
+    const {theme, toggleTheme} = useContext(ThemeContext)
+    console.log(theme)
     return (
     <>
         <nav className="navigation">
@@ -36,10 +39,10 @@ export default function Navbar() {
                     </Link>
                 </li>
                 <li>
-                    <Link to="abc">
+                    <div onClick={toggleTheme}>
                         <img aria-hidden="true" className="navbar-item-image"src="/leave.svg" alt="" />
-                        <span className='nav-text'>Exit</span>
-                    </Link>
+                        <span className='nav-text'>Theme</span>
+                    </div>
                 </li>
             </ul>
         </nav>

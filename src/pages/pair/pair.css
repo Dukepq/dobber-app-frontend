@@ -2,9 +2,9 @@
     margin-left: var(--nav-width);
     width: calc(100% - var(--nav-width));
     height: 100vh;
-    color: var(--primary-color-2);
+    color: var(--primary-text-color);
     padding: 2rem;
-    background: linear-gradient(170deg, rgb(95, 80, 173) 0%, rgba(45,42,59,1) 80%, rgba(45,42,59,1) 100%);
+    background: linear-gradient(170deg, rgba(84,69,156,1) 0%, rgba(45,42,59,1) 80%, rgba(45,42,59,1) 100%);
     overflow: hidden;
 }
 .content-wrapper {
@@ -41,8 +41,7 @@
 .search-header {
     font-size: 1.8rem;
     font-weight: 700;
-    color: var(--primary-color-4);
-    filter: brightness(1.2)
+    color: var(--primary-text-color);
 }
 
 .lookup-content-wrapper {
@@ -95,7 +94,7 @@
     top: 2.5rem;
     right: 0;
     padding: 1rem;
-    background: var(--primary-color-3);
+    background: var(--primary-color-4);
     width: 12rem;
     display: flex;
     flex-direction: column;
@@ -121,7 +120,7 @@
     place-content: center;
     width: 100%;
     min-height: 2.1rem;
-    background-color: var(--primary-color-4);
+    background-color: var(--primary-color-2);
     border-radius: 0.5rem;
 }
 .dropdown-menu-pair:hover {
@@ -129,7 +128,7 @@
 }
 
 .dropdown-menu-pair a {
-    color: var(--primary-color-2);
+    color: var(--primary-text-color);
     display: flex;
     align-items: center;
 }
@@ -146,7 +145,7 @@
 } */
 
 .lookup-content {
-    background-color: var(--primary-color-3);
+    background-color: var(--primary-color-4);
     width: 100%;
     min-height: 90%;
     padding: 1rem;
