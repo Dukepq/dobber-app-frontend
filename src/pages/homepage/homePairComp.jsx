@@ -14,12 +14,12 @@ export default function HomePair(props) {
     }, [userSelection])
     const handleClick = () => {
         setUserSelection(prev => {
-            if (typeof(userSelection) === "string" || typeof(userSelection) === "undefined") {
+            if (typeof userSelection === "string" || typeof(userSelection) === "undefined") {
                 window.localStorage.removeItem("DOBBER_USER_PREFERRED_SELECTION#981")
                 return
             }
             try {
-                if (userSelection.length < 6 && !userSelection.includes(data?.depthData?.pair)) {
+                if (userSelection.length < 12 && !userSelection.includes(data?.depthData?.pair)) {
                     return [...prev, data?.depthData?.pair]
                 } else return [...prev]
             } catch(err) {
@@ -32,7 +32,7 @@ export default function HomePair(props) {
                 <div className="price-and-pair-home">
                     <p className="home-pair-clip">{data?.depthData?.pair}</p>
                     <p className="home-pair-clip">{`${data?.depthData?.data?.price?.toLocaleString('de-DE', {style: "currency", currency: "EUR", maximumFractionDigits: 6})}`}</p>
-                    <img src={
+                    <img className='indicator-img' src={
                         (Number(data?.ROBS?.ROBSb) < extremesDef.ROBS || Number(data?.ROBS?.ROBSa) < extremesDef.ROBS)
                         ?  lowLqImage : (Number(data?.depthData?.data?.spread) * 100 > extremesDef.spread)
                         ?  spreadImage : (Number(data?.volumeData?.averageVolume) * Number(data?.depthData?.data?.price) > extremesDef.recentVolume)
@@ -44,14 +44,16 @@ export default function HomePair(props) {
                 <p className="home-pair-clip">{data?.depthData?.exchange}</p>
             </div>
             <div className="pair-component-content">
-                <div className="home-grid-data-comp">CONTENT HERE</div>
-                <div className="home-grid-data-comp">CONTENT HERE</div>
-                <div className="home-grid-data-comp">CONTENT HERE</div>
-                <div className="home-grid-data-comp">CONTENT HERE</div>
-                <div className="home-grid-data-comp">CONTENT HERE</div>
-                <div className="home-grid-data-comp">CONTENT HERE</div>
-                <div className="home-grid-data-comp">CONTENT HERE</div>
-                <div className="home-grid-data-comp">CONTENT HERE</div>
+                <div className="home-grid-data-comp"><p>{data?.depthData?.data?.spread}</p></div>
+                <div className="home-grid-data-comp"><p>{data?.depthData?.data?.spread}</p></div>
+                <div className="home-grid-data-comp"><p>{data?.depthData?.data?.depthRatio}</p></div>
+                <div className="home-grid-data-comp"><p>{data?.ROBS?.ROBSa}</p></div>
+                <div className="home-grid-data-comp"><p>{data?.ROBS?.ROBSa}</p></div>
+                <div className="home-grid-data-comp"><p>{data?.volumeData?.periodOverPeriod}</p></div>
+                <div className="home-grid-data-comp"><p>{(data?.volumeData?.volatilityArray?.reduce((acc, cur) => {
+                    return acc + cur
+                }) / 6)*100}%</p></div>
+                <div className="home-grid-data-comp"><p>CONTENT HERE</p></div>
                 <div onClick={handleClick} className="home-grid-data-comp"></div>
             </div>
         </div>

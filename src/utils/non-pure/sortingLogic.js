@@ -5,7 +5,8 @@ import {
   sortByDepthRatio,
   sortByName,
   sortByExchangeName,
-  sortByVolume  
+  sortByVolume,
+  sortByVolatilityIndex,
 } from './sortingFuncs.js'
 
 // add cases to this when you add rows containing different data
@@ -33,6 +34,12 @@ function sortingLogic(sorting, array) {
         break
       case "volume":
         sortedArray = sortByVolume(array)
+        break
+        case "volatilityIndex":
+          sortedArray = sortByVolatilityIndex(array)
+          break
+      default:
+        sortedArray = sortByName(array)
         break
     }
     return sorting.ascending ? sortedArray : sortedArray.reverse()

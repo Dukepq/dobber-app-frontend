@@ -4,4 +4,12 @@
     height: 100vh;
     background-color: white;
     padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.docs-page-wrapper img {
+    width: 20vw
 }

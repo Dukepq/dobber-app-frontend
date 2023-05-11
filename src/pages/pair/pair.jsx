@@ -1,5 +1,5 @@
 import "./pair.css"
-import Lookup from "./lookupComp"
+import Lookup from "../../components/lookupComp"
 import { useState } from "react"
 import { Outlet } from "react-router-dom"
 

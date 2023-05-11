@@ -26,14 +26,15 @@ function App() {
   const [dataObject, setDataObject] = useState(() => {})
   const [userSelection, setUserSelection] = useState(() => {
     const item = JSON.parse(window.localStorage.getItem("DOBBER_USER_PREFERRED_SELECTION#981")) || []
-    console.log(typeof([item][0]))
     return item
 })
   useEffect(() => {
     window.localStorage.setItem('D_TOKEN_ID', JSON.stringify(key))
   }, [key])
   useEffect(() => {
-    fetch('http://localhost:5003/api/v1/data')
+    fetch('http://localhost:5003/api/v1/data', {
+      method: "GET"
+    })
         .then(res => res.json())
         .then(data => {
           setDataObject(() => data.data)
@@ -47,7 +48,9 @@ function App() {
   }, [])
   useEffect(() => {
     const interval = setInterval(() => {
-      fetch('http://localhost:5003/api/v1/data')
+      fetch('http://localhost:5003/api/v1/data', {
+        method: "GET"
+      })
         .then(res => res.json())
         .then(data => {
           setDataObject(() => data.data)
@@ -78,7 +81,7 @@ function App() {
                 dataObject = {dataObject} pairs = {pairs} data = {data} userSelectionHooks = {{userSelection, setUserSelection}}
                 />}/>
                 <Route path='docs' element={< Docs />} />
-                  <Route path='app' element={< Screener data = {data}/>}/>
+                  <Route path='app' element={< Screener data = {data} userSelectionHook = {{userSelection, setUserSelection}}/>}/>
                     <Route path="pair" element={<Pair pairs = {pairs} data = {data} dataObject = {dataObject}/>}>
                       <Route path=":pair" element={< Content data = {data} dataObject = {dataObject}/>}/>
                     </Route>

@@ -6,4 +6,5 @@
     recentVolume: 5000,
     PoP: null,
     volumeTimesSpread: null,
+    volatilityIndex: 2,
   }

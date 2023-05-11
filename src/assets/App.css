@@ -26,7 +26,6 @@ main {
     width: 100%;
     /* border: 6px solid var(--color-dark-grey);
     background-color: var(--color-grey); */
-    filter: drop-shadow(0px 0px 12px #0000002f);
     border-radius: 0.2rem;
     overflow-x: hidden;
     font-weight: 300;
@@ -54,7 +53,7 @@ main {
 .description-row {
     height: 3.6rem;
     background-color: var(--primary-color-4);
-    filter: drop-shadow(0px 6px 12px rgba(60, 45, 81, 0.238));
+    box-shadow: 0px 0px 0.5rem 0px rgba(0,0,0,0.25);
     border-bottom: none;
     position: sticky;
     z-index: 3;
@@ -65,20 +64,14 @@ main {
     text-decoration: none;
 }
 
-.col-1 a:hover::before {
-    content: "";
-    background: url('white-arrow.svg');
-    display: inline-block;
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 18px;
-    height: 16px;
-    position: absolute;
-    top: 50%;
-    left: 65%;
-    transform: translateY(-50%);
-    animation: arrow-slide 200ms ease forwards
+.col-1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem
 }
+
+
 @keyframes arrow-slide {
     from {opacity: 0; transform: translate(0, -50%)}
     to {opacity: 100; transform: translate(100%, -50%)}
@@ -167,7 +160,7 @@ main {
     width: calc(2/3 * 100%);
     display: flex;
     overflow: hidden;
-
+    box-shadow: 0px 0px 1rem 0px rgba(0,0,0,0.25);
 }
 
 .top-right-section > div {
@@ -191,6 +184,26 @@ main {
 
 }
 
+.segment-chunk {
+    box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.25);
+    background: var(--primary-color-3);
+    height: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.2rem;
+    padding-left: 0.5rem;
+    border-radius: 0.3rem;
+}
+
+.exclamation {
+    filter: brightness(1.25)
+}
+
+.indicator-img {
+    filter: invert(0.6);
+}
+
 .segment-header {
     display: flex;
     align-items: end;
@@ -208,4 +221,15 @@ main {
 
 .day-volume {
     font-weight: 300;
+}
+
+.watching-toggle-image {
+    width: 1rem;
+    opacity: 0.25;
+    cursor: pointer;
+    transition: opacity 300ms;
+}
+
+.top-left-section {
+    box-shadow: 0px 0px 1rem 0px rgba(0,0,0,0.25);
 }

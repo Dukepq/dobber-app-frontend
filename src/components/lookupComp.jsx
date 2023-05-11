@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
-import lookingGlass from '../../assets/looking-glass.svg'
+import lookingGlass from '../assets/looking-glass.svg'
 import { Link } from 'react-router-dom'
-import spreadImage from '../../assets/spread.svg'
-import lowLqImage from '../../assets/lowLiquidity.svg'
-import volumeImage from '../../assets/water.svg'
-import risingImage from '../../assets/rising.svg'
-import extremesDef from '../../extremesDef'
+import spreadImage from '../assets/spread.svg'
+import lowLqImage from '../assets/lowLiquidity.svg'
+import volumeImage from '../assets/water.svg'
+import risingImage from '../assets/rising.svg'
+import extremesDef from '../extremesDef'
 
 export default function Lookup(props) {
     const [formData, setFormData] = useState("")
@@ -32,10 +32,10 @@ export default function Lookup(props) {
                     to={`/pair/${item}`}>{item}
                     {
                         (Number(dataObject[item]?.ROBS?.ROBSb) < extremesDef.ROBS || Number(dataObject[item]?.ROBS?.ROBSa) < extremesDef.ROBS)
-                        ? <img src={lowLqImage}></img> : (Number(dataObject[item]?.depthData?.data?.spread) * 100 > extremesDef.spread)
-                        ? <img src={spreadImage}></img> : (Number(dataObject[item]?.volumeData?.averageVolume) * Number(dataObject[item]?.depthData?.data?.price) > extremesDef.recentVolume)
-                        ? <img src={volumeImage}></img> : (Number(dataObject[item]?.depthData?.data?.depthRatio) < extremesDef.depthRatioB || Number(dataObject[item]?.depthData?.data?.depthRatio) > extremesDef.depthRatioA)
-                        ? <img src={risingImage}></img> : null
+                        ? <img className='indicator-img' src={lowLqImage}></img> : (Number(dataObject[item]?.depthData?.data?.spread) * 100 > extremesDef.spread)
+                        ? <img className='indicator-img' src={spreadImage}></img> : (Number(dataObject[item]?.volumeData?.averageVolume) * Number(dataObject[item]?.depthData?.data?.price) > extremesDef.recentVolume)
+                        ? <img className='indicator-img' src={volumeImage}></img> : (Number(dataObject[item]?.depthData?.data?.depthRatio) < extremesDef.depthRatioB || Number(dataObject[item]?.depthData?.data?.depthRatio) > extremesDef.depthRatioA)
+                        ? <img className='indicator-img' src={risingImage}></img> : null
                     }
                     </Link></div>
                 })}

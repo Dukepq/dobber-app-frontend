@@ -6,7 +6,6 @@ import { ThemeContext } from "./useTheme"
 
 export default function Navbar() {
     const {theme, toggleTheme} = useContext(ThemeContext)
-    console.log(theme)
     return (
     <>
         <nav className="navigation">

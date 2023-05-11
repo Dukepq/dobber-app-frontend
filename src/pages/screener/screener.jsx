@@ -11,6 +11,7 @@ export default function Screener(props) {
     const [sorting, setSorting] = useState({field: "", ascending: false})
     const [data, setData] = useState(props.data)
     const [averages, setAverages] = useState({ROBSbAvg: 0, ROBSaAvg: 0, spreadAvg: 0, depthAvg: 0})
+    const {userSelection, setUserSelection} = props.userSelectionHook
     useEffect(() => {
         calcAverages(props.data)
         setData(prev => {
@@ -18,7 +19,6 @@ export default function Screener(props) {
             return sortedArray
         })
     }, [props.data])
-
     useEffect(() => {
       try {
         calcAverages(data)
@@ -90,8 +90,8 @@ export default function Screener(props) {
                     <ExtraInfo textContent = {"A measure of downward order book strength."} />
                     </div>
                 <div className='description-col description-col-5 col'>
-                    <span onClick={() => setSorting(prev => ({field: "depth", ascending: !prev.ascending}))}>Depth ratio</span>
-                    <ExtraInfo textContent = {"The ratio of bids and asks."} />
+                    <span onClick={() => setSorting(prev => ({field: "volatilityIndex", ascending: !prev.ascending}))}>Volatility index</span>
+                    <ExtraInfo textContent = {"The average difference of lows and highs taken for the past 6 candles with period of 1m in percentages."} />
                     </div>
                 <div className='description-col description-col-6 col'>
                     <span onClick={() => setSorting((prev) => {
@@ -118,6 +118,8 @@ export default function Screener(props) {
                 spread = {obj?.depthData?.data?.spread}
                 averages = {averages}
                 price = {obj?.depthData?.data?.price}
+                volatilityIndex = {(obj?.volumeData?.volatilityArray?.reduce((acc, cur) => acc + cur) / 6) * 100}
+                userSelectionHook = {{userSelection, setUserSelection}}
               />
             })}
           </div>

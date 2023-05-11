@@ -54,3 +54,15 @@ export const sortBySpread = (array) => {
     })
     return sorted
   }
+
+  export const sortByVolatilityIndex = (array) => {
+    const sorted = array.sort((a, b) => {
+      const tempA = a.volumeData?.volatilityArray?.reduce((acc, cur) => acc + cur)
+      const tempB = b.volumeData?.volatilityArray?.reduce((acc, cur) => acc + cur)
+      if ((tempA || -Infinity) < (tempB || -Infinity)) return -1
+      if ((tempA || -Infinity) > (tempB || -Infinity)) return 1
+      else return 0
+    })
+    return sorted
+    
+  }

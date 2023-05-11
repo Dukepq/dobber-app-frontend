@@ -1,6 +1,3 @@
-import { useState } from "react"
-import ExtraInfo from "../../components/extraInfo"
-
 export default function ScreenerSegment(props) {
     const {data} = props
     const market = data.find((item) => item?.depthData?.pair == props?.pair)
