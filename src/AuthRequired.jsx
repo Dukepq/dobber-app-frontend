@@ -6,11 +6,12 @@ export default function AuthRequired(props) {
     const {key, setKey} = useContext(UserContext)
     const {auth, setAuth} = props
     useEffect(() => {
-
             fetch("http://localhost:5003/val", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Content-Length": key.length.toString(),
+                "X-Custom-Header": key.toString(),
             },
             body: JSON.stringify({
                 token: key

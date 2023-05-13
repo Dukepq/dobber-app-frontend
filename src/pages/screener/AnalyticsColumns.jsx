@@ -21,19 +21,19 @@ export default function AnalyticsColumns(props) {
             hook("grey")
             return
         }
-        if (value < bounds[0] * relativeTo) hook(colorArray[0])
-        else if (bounds[0] * relativeTo <= value && value < bounds[1] * relativeTo) hook(colorArray[1])
-        else if (bounds[1] * relativeTo <= value && value < bounds[2] * relativeTo) hook(colorArray[2])
-        else if (bounds[2] * relativeTo <= value && value < bounds[3] * relativeTo) hook(colorArray[3])
-        else if (bounds[3] * relativeTo <= value && value < bounds[4] * relativeTo) hook(colorArray[4])
-        else if (value >= bounds[4] * relativeTo) hook(colorArray[5])
-        else hook("white")
+        if (value < bounds[0] * relativeTo) return hook(colorArray[0])
+        if (bounds[0] * relativeTo <= value && value < bounds[1] * relativeTo) return hook(colorArray[1])
+        if (bounds[1] * relativeTo <= value && value < bounds[2] * relativeTo) return hook(colorArray[2])
+        if (bounds[2] * relativeTo <= value && value < bounds[3] * relativeTo) return hook(colorArray[3])
+        if (bounds[3] * relativeTo <= value && value < bounds[4] * relativeTo) return hook(colorArray[4])
+        if (value >= bounds[4] * relativeTo) return hook(colorArray[5])
+        hook("white")
     }
 
     return (
         <div className={`row row-${props.id}`}>
-            <div className={`col col-1 col-1-row-${props.id ?? 1}`}><Favorite pair = {props.name} userSelectionHook = {{userSelection, setUserSelection}}/><span><Link to={`/pair/${props.name}`}>{`${props.name}`}</Link></span></div>
-            <div className={`col col-2 col-2-row-${props.id ?? 1}`}><a style={{color: "white"}} target="_blank" href={`https://account.bitvavo.com/markets/${props.name}`}><span>{props?.exchange}</span></a></div>
+            <div className={`col col-1 col-1-row-${props.id ?? 1}`}><Favorite pair={props.name} userSelectionHook = {{userSelection, setUserSelection}}/><span><Link to={`/pair/${props.name}`}>{`${props.name}`}</Link></span></div>
+            <div className={`col col-2 col-2-row-${props.id ?? 1}`}><a target="_blank" href={`https://account.bitvavo.com/markets/${props.name}`}><span>{props?.exchange}</span></a></div>
             <div style={{color: ROBSaColor}} className={`col col-3 col-3-row-${props.id ?? 1}`}><span>{(Number(props.ROBSa?.toFixed(3)) || "low volume").toLocaleString('de-DE')}</span></div>
             <div style={{color: ROBSbColor}} className={`col col-4 col-4-row-${props.id ?? 1}`}><span>{(Number(props.ROBSb?.toFixed(3)) || "low volume").toLocaleString('de-DE')}</span></div>
             <div style={{}} className={`col col-5 col-5-row-${props.id ?? 1}`}><span>{props.volatilityIndex !==0

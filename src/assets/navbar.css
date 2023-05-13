@@ -16,6 +16,10 @@
     height: 100%;
 }
 
+#light .navbar-nav img {
+    filter: invert(1)
+}
+
 .navigation li {
     width: 100%;
     position: relative;
@@ -40,6 +44,7 @@
 
 .navbar-nav li:last-child {
     margin-top: auto;
+    user-select: none;
 }
 
 .navbar-nav li:not(.navbar-nav li:first-child):hover {
@@ -49,17 +54,7 @@
     background-color: rgb(218, 218, 218);
 }
 #dark .navbar-nav li:not(.navbar-nav li:first-child):hover {
-    background-color: darkslategray;
-}
-
-.navbar-nav li:hover::before {
-    content: "";
-    display: block;
-    width: 3px;
-    height: var(--nav-width);
-    background-color: var(--color-purp);
-    position: absolute;
-    filter: blur(1rem);
+    background-color: var(--primary-color-2);
 }
 
 .navbar-nav img:not(.nav-logo) {
@@ -91,7 +86,7 @@
 }
 
 .navigation:hover .nav-text {
-    transition: 600ms;
+    transition: 200ms;
     animation: slide-ani 300ms ease forwards
 }
 

@@ -16,6 +16,7 @@ import { ThemeContext } from './useTheme'
 
 function App() {
   const [data, setData] = useState([])
+  const [sorting, setSorting] = useState({field: "", ascending: false})
   const [key, setKey] = useState(() => {
     const item = window.localStorage.getItem('D_TOKEN_ID')
     return JSON.parse(item) || ""
@@ -32,7 +33,13 @@ function App() {
     window.localStorage.setItem('D_TOKEN_ID', JSON.stringify(key))
   }, [key])
   useEffect(() => {
+
     fetch('http://localhost:5003/api/v1/data', {
+      headers: {
+        "Content-Type": "text/plain",
+        "Content-Length": key.length.toString(),
+        "X-Custom-Header": key.toString()
+      },
       method: "GET"
     })
         .then(res => res.json())
@@ -47,8 +54,14 @@ function App() {
         .catch(err => console.log(err))
   }, [])
   useEffect(() => {
+
     const interval = setInterval(() => {
       fetch('http://localhost:5003/api/v1/data', {
+        headers: {
+          "Content-Type": "text/plain",
+          "Content-Length": key.length.toString(),
+          "X-Custom-Header": key.toString()
+        },
         method: "GET"
       })
         .then(res => res.json())
@@ -81,7 +94,7 @@ function App() {
                 dataObject = {dataObject} pairs = {pairs} data = {data} userSelectionHooks = {{userSelection, setUserSelection}}
                 />}/>
                 <Route path='docs' element={< Docs />} />
-                  <Route path='app' element={< Screener data = {data} userSelectionHook = {{userSelection, setUserSelection}}/>}/>
+                  <Route path='app' element={< Screener data = {data} userSelectionHook = {{userSelection, setUserSelection}} sortingHook = {{sorting, setSorting}}/>}/>
                     <Route path="pair" element={<Pair pairs = {pairs} data = {data} dataObject = {dataObject}/>}>
                       <Route path=":pair" element={< Content data = {data} dataObject = {dataObject}/>}/>
                     </Route>

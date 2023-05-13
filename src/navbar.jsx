@@ -3,6 +3,8 @@ import {Link, Outlet} from "react-router-dom"
 import lookingGlassImage from "./assets/looking-glass.svg"
 import { useContext } from "react"
 import { ThemeContext } from "./useTheme"
+import darkModeImage from "./assets/toggle-on-solid.svg"
+import lightModeImage from "./assets/toggle-off-solid.svg"
 
 export default function Navbar() {
     const {theme, toggleTheme} = useContext(ThemeContext)
@@ -39,8 +41,14 @@ export default function Navbar() {
                 </li>
                 <li>
                     <div onClick={toggleTheme}>
-                        <img aria-hidden="true" className="navbar-item-image"src="/leave.svg" alt="" />
-                        <span className='nav-text'>Theme</span>
+                        {theme === "dark" ?
+                        <img aria-hidden="true" className="navbar-item-image"src={lightModeImage} alt="light mode"
+                            style={{filter: "invert(1)"}}
+                        /> : 
+                        <img aria-hidden="true" className="navbar-item-image"src={darkModeImage} alt="dark mode"
+                        style={{filter: "invert(0)"}}/>
+                        }
+                        <span className='nav-text'>{theme === "dark" ? "light mode" : "dark mode"}</span>
                     </div>
                 </li>
             </ul>

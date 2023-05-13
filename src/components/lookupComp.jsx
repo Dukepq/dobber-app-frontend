@@ -28,8 +28,7 @@ export default function Lookup(props) {
                     const currentItem = item.toLowerCase()
                     return currentItem.startsWith(searching)
                 }).map((item, index) => {
-                    return <div className='dropdown-menu-pair' key={index}><Link // getting data by index, need to get data from an object
-                    to={`/pair/${item}`}>{item}
+                    return <Link className='dropdown-menu-pair' to={`/pair/${item}`} key={index}> <div> {item}
                     {
                         (Number(dataObject[item]?.ROBS?.ROBSb) < extremesDef.ROBS || Number(dataObject[item]?.ROBS?.ROBSa) < extremesDef.ROBS)
                         ? <img className='indicator-img' src={lowLqImage}></img> : (Number(dataObject[item]?.depthData?.data?.spread) * 100 > extremesDef.spread)
@@ -37,7 +36,7 @@ export default function Lookup(props) {
                         ? <img className='indicator-img' src={volumeImage}></img> : (Number(dataObject[item]?.depthData?.data?.depthRatio) < extremesDef.depthRatioB || Number(dataObject[item]?.depthData?.data?.depthRatio) > extremesDef.depthRatioA)
                         ? <img className='indicator-img' src={risingImage}></img> : null
                     }
-                    </Link></div>
+                    </div></Link>
                 })}
                 </div>)}
             </div>

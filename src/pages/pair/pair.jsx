@@ -13,21 +13,6 @@ export default function Pair(props) {
             <div className="content-wrapper">
                 <nav className="pair-content-nav">
                     <p className="search-header">SEARCH</p>
-                    <div className="search-header-spacer">
-                        <p></p>
-                        <div className="forecast-el">
-                            <p></p>
-                            <img src="" alt="" />
-                        </div>
-                        <div className="forecast-el">
-                            <p></p>
-                            <img src="" alt="" />
-                        </div>
-                        <div className="forecast-el">
-                            <p></p>
-                            <img src="" alt="" />
-                        </div>
-                    </div>
                     < Lookup
                     selectionHook = {{selected, setSelected}}
                     pairs = {pairs}

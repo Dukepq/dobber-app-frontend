@@ -8,7 +8,7 @@ import Navbar from '../../navbar'
 import { UserContext } from '../../userContext'
 
 export default function Screener(props) {
-    const [sorting, setSorting] = useState({field: "", ascending: false})
+    const {sorting, setSorting} = props.sortingHook
     const [data, setData] = useState(props.data)
     const [averages, setAverages] = useState({ROBSbAvg: 0, ROBSaAvg: 0, spreadAvg: 0, depthAvg: 0})
     const {userSelection, setUserSelection} = props.userSelectionHook
@@ -74,37 +74,38 @@ export default function Screener(props) {
           <div className='data-wrapper'>
             <div className="description-row row">
                 <div className='description-col description-col-1 col'>
+                  <ExtraInfo textContent = {"The full pair name consisting of the base and quote."}/>
                     <span onClick={() => setSorting(prev => ({field: "name", ascending: !prev.ascending}))}>Name</span>
-                    <ExtraInfo textContent = {"The relevant pair"}/>
                     </div>
                 <div className='description-col description-col-2 col'>
-                    <span onClick={() => setSorting(prev => ({field: "exchange", ascending: !prev.ascending}))}>Exchange</span>
                     <ExtraInfo textContent = {"The exchange this pair is trading on."} />
+                    <span onClick={() => setSorting(prev => ({field: "exchange", ascending: !prev.ascending}))}>Exchange</span>
                     </div>
                 <div className='description-col description-col-3 col'>
-                    <span onClick={() => setSorting(prev => ({field: "ROBSa", ascending: !prev.ascending}))}>ROBSa</span>
                     <ExtraInfo textContent = {"A measure of upward order book strength."} />
+                    <span onClick={() => setSorting(prev => ({field: "ROBSa", ascending: !prev.ascending}))}>ROBSa</span>
                     </div>
                 <div className='description-col description-col-4 col'>
-                    <span onClick={() => setSorting(prev => ({field: "ROBSb", ascending: !prev.ascending}))}>ROBSb</span>
                     <ExtraInfo textContent = {"A measure of downward order book strength."} />
+                    <span onClick={() => setSorting(prev => ({field: "ROBSb", ascending: !prev.ascending}))}>ROBSb</span>
                     </div>
                 <div className='description-col description-col-5 col'>
-                    <span onClick={() => setSorting(prev => ({field: "volatilityIndex", ascending: !prev.ascending}))}>Volatility index</span>
                     <ExtraInfo textContent = {"The average difference of lows and highs taken for the past 6 candles with period of 1m in percentages."} />
+                    <span onClick={() => setSorting(prev => ({field: "volatilityIndex", ascending: !prev.ascending}))}>Volatility index</span>
                     </div>
                 <div className='description-col description-col-6 col'>
+                    <ExtraInfo textContent = {"The percent difference between the best ask and best bid."} />
                     <span onClick={() => setSorting((prev) => {
                   // console.log('prev state ' + prev.field, prev.ascending)
                   return {field: "spread", ascending: !prev.ascending}
                 })}>Spread</span>
-                    <ExtraInfo textContent = {"The percent difference between the best ask and best bid."} />
                 </div>
                 <div className='description-col description-col-7 col'>
-                  <span onClick={() => setSorting(prev => ({field: "volume", ascending: !prev.ascending}))}>Recent volume</span>
                   <ExtraInfo textContent = {"Shows you recent average volume (€/min)"} />
+                  <span onClick={() => setSorting(prev => ({field: "volume", ascending: !prev.ascending}))}>Recent volume</span>
                 </div>
             </div>
+            <div className='screener-data-content'>
             {data?.map((obj, index) => {
               return < AnalyticsColumns
                 key = {index}
@@ -122,6 +123,7 @@ export default function Screener(props) {
                 userSelectionHook = {{userSelection, setUserSelection}}
               />
             })}
+            </div>
           </div>
         </main>
       </>

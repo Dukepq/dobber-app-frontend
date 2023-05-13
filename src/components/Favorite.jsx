@@ -1,8 +1,12 @@
-import { useState } from "react"
+import { useContext } from "react"
+import { ThemeContext } from "../useTheme"
 import eyeImage from "../assets/eye-solid.svg"
+import emptyStarImage from "../assets/star-regular.svg"
+import filledStarImage from "../assets/star-solid.svg"
 
 export default function Favorite(props) {
     const pair = props.pair
+    const {theme} = useContext(ThemeContext)
     const {userSelection, setUserSelection} = props.userSelectionHook
     const handleClick = () => {
         const storedArray = JSON.parse(window.localStorage.getItem("DOBBER_USER_PREFERRED_SELECTION#981"))
@@ -25,8 +29,9 @@ export default function Favorite(props) {
         }
     }
     return (
-        <img className="watching-toggle-image" onClick={handleClick} src={eyeImage} alt="add favorite"
-        style = {userSelection.includes(pair) ? {opacity: 0.9, filter: "invert(1)"} : {}}
+        <img className="watching-toggle-image" onClick={handleClick} src={userSelection.includes(pair) ? filledStarImage : emptyStarImage} alt="add favorite"
+        style = {userSelection.includes(pair) ? (theme === "light" ? {filter:"invert(8%) sepia(100%) saturate(7184%) hue-rotate(248deg) brightness(96%) contrast(143%)", opacity: 0.5} : {filter: "invert(1)", opacity: 1}) :
+        (theme === "dark" ? {filter: "invert(1)", opacity: 0.5} : {filter: "invert(8%) sepia(100%) saturate(7184%) hue-rotate(248deg) brightness(96%) contrast(143%)", opacity: 0.25})}
         />
     )
 }

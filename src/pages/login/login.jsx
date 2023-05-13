@@ -15,6 +15,7 @@ export default function Login(props) {
         if (data.success) {
             setKey(() => data.token)
             setAuth(() => true)
+            window.location.href = "/app"
         }
         setFormData(() => "")
     }
@@ -38,7 +39,6 @@ export default function Login(props) {
     //     }
     // })
     // }, [key])
-
     if (auth) return <Navigate to="/app" />
     return (
     <div className="container">

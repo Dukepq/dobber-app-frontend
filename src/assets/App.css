@@ -15,6 +15,7 @@
 
 main {
     min-height: 100vh;
+    min-width: fit-content;
     margin-left: var(--nav-width);
     width: calc(100% - var(--nav-width));
     padding: 2%;
@@ -32,29 +33,71 @@ main {
     /* overflow-y: scroll; */
 }
 
+::-webkit-scrollbar {
+    width: 0.6rem;
+}
+::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color-4);
+}
+::-webkit-scrollbar-track {
+    background-color: var(--primary-color-2);
+}
+
 .row  {
     width: 100%;
     height: 2.5rem;
+    padding: 0 1rem 0 1rem;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.25)
+    border-bottom: 1px solid rgba(var(--secondary-color-1-adj), 0.25)
 }
 
+.screener-data-content {
+    border: 1px solid rgba(var(--secondary-color-1-adj), 0.25);
+    border-top: none;
+}
+
+
 .col {
-    display: grid;
-    place-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     height: 100%;
     width: 100%;
     position: relative;
 }
 
+.col-1, .col-2  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
 
+.col-1 {
+    justify-content: flex-start;
+}
+
+
+.description-col-1, .description-col-2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.description-col-1 {
+    justify-content: flex-start;
+}
+
+.description-col-1 span {
+    margin-left: 1rem;
+}
 
 .description-row {
+    border: 1px solid rgba(var(--secondary-color-1-adj), 0.25);
+    border-radius: 0.5rem 0.5rem 0 0;
     height: 3.6rem;
-    background-color: var(--primary-color-4);
-    box-shadow: 0px 0px 0.5rem 0px rgba(0,0,0,0.25);
-    border-bottom: none;
     position: sticky;
     z-index: 3;
 }
@@ -64,14 +107,6 @@ main {
     text-decoration: none;
 }
 
-.col-1 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem
-}
-
-
 @keyframes arrow-slide {
     from {opacity: 0; transform: translate(0, -50%)}
     to {opacity: 100; transform: translate(100%, -50%)}
@@ -80,6 +115,7 @@ main {
 .description-col span {
     cursor: pointer;
     display: inline;
+    font-weight: 700;
 }
 
 .data-wrapper::-webkit-scrollbar {
@@ -110,9 +146,9 @@ main {
     font-size: 0.8rem;
     font-weight: 100;
     top: 1.36rem;
-    right: 0;
+    left: 0;
     padding: 1rem;
-    background-color: var(--primary-color-3);
+    background-color: var(--primary-color-2);
     filter: brightness(1.1);
     border-radius: 1rem;
     animation: fade-on-hover 300ms ease
@@ -139,11 +175,10 @@ main {
     margin-left: var(--nav-width);
     gap: 2rem;
     padding: 2% 2% 0 2%;
-    min-width: 1100px;
+    min-width: fit-content;
 }
 
 .top-wrapper > div {
-    background-color: var(--primary-color-4);
     height: 100%;
     border-radius: 0.2rem;
     filter: drop-shadow(0px 6px 12px rgba(60, 45, 81, 0.238));
@@ -160,7 +195,6 @@ main {
     width: calc(2/3 * 100%);
     display: flex;
     overflow: hidden;
-    box-shadow: 0px 0px 1rem 0px rgba(0,0,0,0.25);
 }
 
 .top-right-section > div {
@@ -184,9 +218,12 @@ main {
 
 }
 
+#light .col:not(.description-col) {
+    filter: brightness(0.95) contrast(1.1)
+}
+
 .segment-chunk {
-    box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.25);
-    background: var(--primary-color-3);
+    background: linear-gradient(90deg, rgba(0, 0, 255, 0.3), rgba(0, 0, 255, 0));
     height: 3rem;
     display: flex;
     flex-direction: column;
@@ -208,7 +245,6 @@ main {
     display: flex;
     align-items: end;
     gap: 1rem;
-    border-bottom: 2px solid var(--primary-text-color);
 }
 
 .segment-data {
@@ -225,11 +261,8 @@ main {
 
 .watching-toggle-image {
     width: 1rem;
-    opacity: 0.25;
+    opacity: 0.5;
     cursor: pointer;
     transition: opacity 300ms;
-}
-
-.top-left-section {
-    box-shadow: 0px 0px 1rem 0px rgba(0,0,0,0.25);
+    margin-right: 1rem;
 }

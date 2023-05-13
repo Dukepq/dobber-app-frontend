@@ -5,12 +5,13 @@
   --primary-color-1: rgb(6, 53, 94);
   --primary-color-2: rgb(45, 45, 48);
   --primary-color-2-adj: 48, 48, 52;
-  --primary-color-3: rgb(69, 66, 73);
-  --primary-color-4: #333333;
-  --secondary-color-1: rgba(210, 209, 255, 1);
+  --primary-color-3: rgb(55, 41, 113);
+  --primary-color-4: rgb(29, 28, 34);
+  --secondary-color-1: blue;
   --primary-text-color: rgb(255, 255, 255);
-  --primary-fade: rgb(2, 63, 118);
-  --background-color: rgb(2, 63, 118);
+  --primary-text-color-adj: 255, 255, 255;
+  --primary-fade: rgb(21, 19, 24);
+  --background-color: rgb(20, 18, 26);
   --nav-width: 6rem;
   --transition-speed: 100ms;
 }
@@ -23,11 +24,12 @@
   --primary-color-1: rgb(0, 249, 87);
   --primary-color-2: rgba(241, 240, 242, 1);
   --primary-color-2-adj: 48, 48, 52;
-  --primary-color-3: rgb(69, 66, 73);
-  --primary-color-4: rgb(182, 175, 201);
-  --secondary-color-1: rgba(210, 209, 255, 1);
+  --primary-color-3: rgb(221, 221, 221);
+  --primary-color-4: rgba(241, 240, 242, 1);
+  --secondary-color-1: blue;
+  --secondary-color-1-adj: 0, 0, 255;
   --primary-text-color: black;
-  --primary-fade: white;
+  --primary-fade: rgb(255, 255, 255);
   --background-color: white;
   background: var(--primary-fade);
   transition: background-color 200ms ease;

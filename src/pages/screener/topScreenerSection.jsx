@@ -1,19 +1,35 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
+import { UserContext } from "../../userContext"
 
 import ScreenerSegment from "./ScreenerSegment"
 export default function TopScreenerSection(props) {
     const [largestPairs, setLargestPairs] = useState([])
     const [volumeToday, setVolumeToday] = useState(0)
     const {data} = props
+    const {key} = useContext(UserContext)
     useEffect(() => {
-        fetch('http://localhost:5003/api/v1/daily/total')
+        fetch('http://localhost:5003/api/v1/daily/total', {
+            headers: {
+                "Content-Type": "application/json",
+                "Content-Length": key.length.toString(),
+                "X-Custom-Header": key.toString(),
+            },
+            method: "GET"
+        })
         .then(res => res.json())
         .then(data => {
             setVolumeToday(() => Number(data.data))
         })
     }, [])
     useEffect(() => {
-        fetch('http://localhost:5003/api/v1/daily/largest')
+        fetch('http://localhost:5003/api/v1/daily/largest', {
+            headers: {
+                "Content-Type": "application/json",
+                "Content-Length": key.length.toString(),
+                "X-Custom-Header": key.toString(),
+            },
+            method: "GET"
+        })
             .then(res => res.json())
             .then(data => {
                 setLargestPairs(prev => {
@@ -25,7 +41,14 @@ export default function TopScreenerSection(props) {
                 })
             })
         const interval = setInterval(() => {
-            fetch('http://localhost:5003/api/v1/daily/largest')
+            fetch('http://localhost:5003/api/v1/daily/largest', {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Content-Length": key.length.toString(),
+                    "X-Custom-Header": key.toString(),
+                },
+                method: "GET"
+            })
             .then(res => res.json())
             .then(data => {
                 setLargestPairs(prev => {
