@@ -52,13 +52,17 @@ main {
     border-bottom: 1px solid rgba(var(--secondary-color-1-adj), 0.25);
 }
 
+#dark .row:nth-child(2n) {
+    background-color: rgba(0, 0, 255, 0.025);
+}
+#light .row:nth-child(2n) {
+    background-color: rgba(0, 0, 255, 0.08);
+}
+
 .screener-data-content {
     border: 1px solid rgba(var(--secondary-color-1-adj), 0.25);
     border-top: none;
 }
-
-
-
 
 .col {
     display: flex;
@@ -68,8 +72,6 @@ main {
     width: 100%;
     position: relative;
 }
-
-
 
 .col-2, .description-col-2, .col-3, .description-col-3, .col-4, .description-col-4,
 .col-5, .description-col-5, .col-6, .description-col-6, .col-7, .description-col-7 {
@@ -97,7 +99,7 @@ main {
 
 
 .screener-input-field {
-    width: 100px;
+    width: 80px;
     height: 1.5rem;
     display: block;
     border-radius: 50vw;
@@ -106,11 +108,13 @@ main {
     padding-left: .8rem;
     font-size: 1rem;
     color: white;
-    transition: border-radius 300ms ease;
+    transition: width 300ms ease;
     outline: none;
 }
 
-
+.screener-input-field:focus {
+    width: 100px;
+}
 
 .description-row {
     border: 1px solid rgba(var(--secondary-color-1-adj), 0.25);

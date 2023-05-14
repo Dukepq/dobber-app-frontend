@@ -84,7 +84,6 @@ export default function Screener(props) {
     }
     return (
       <>
-        {/* <Navbar /> */}
         <TopScreenerSection data = {data}/>
         <main className="main">
           <div className='data-wrapper'>

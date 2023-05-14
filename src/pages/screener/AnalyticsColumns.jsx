@@ -29,7 +29,6 @@ export default function AnalyticsColumns(props) {
         if (value >= bounds[4] * relativeTo) return hook(colorArray[5])
         hook("white")
     }
-    console.log('rendered')
     return (
         <div className={`row row-${props.id}`}>
             <div className={`col col-1 col-1-row-${props.id ?? 1}`}><Favorite pair={props.name} userSelectionHook = {{userSelection, setUserSelection}}/><span><Link to={`/pair/${props.name}`}>{`${props.name}`}</Link></span></div>
