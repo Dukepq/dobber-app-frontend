@@ -29,7 +29,7 @@ export default function AnalyticsColumns(props) {
         if (value >= bounds[4] * relativeTo) return hook(colorArray[5])
         hook("white")
     }
-
+    console.log('rendered')
     return (
         <div className={`row row-${props.id}`}>
             <div className={`col col-1 col-1-row-${props.id ?? 1}`}><Favorite pair={props.name} userSelectionHook = {{userSelection, setUserSelection}}/><span><Link to={`/pair/${props.name}`}>{`${props.name}`}</Link></span></div>
@@ -39,7 +39,7 @@ export default function AnalyticsColumns(props) {
             <div style={{}} className={`col col-5 col-5-row-${props.id ?? 1}`}><span>{props.volatilityIndex !==0
             && props.volatilityIndex ? props.volatilityIndex?.toLocaleString('de-DE') + "%" : "-"}</span></div>
             <div style={{color: spreadColor}} className={`col col-6 col-6-row-${props.id ?? 1}`}><span>{Number((props.spread * 100).toFixed(3)).toLocaleString('de-DE') || "/"}%</span></div>
-            <div style={{}} className={`col col-6 col-6-row-${props.id ?? 1}`}><span>{props.volumeData ? Number((props.volumeData)?.toFixed(2)).toLocaleString('de-DE', {style: "currency", currency: "EUR"}) : "0" }</span></div>
+            <div style={{}} className={`col col-7 col-7-row-${props.id ?? 1}`}><span>{props.volumeData ? Number((props.volumeData)?.toFixed(2)).toLocaleString('de-DE', {style: "currency", currency: "EUR"}) : "0" }</span></div>
         </div>
     )
 }

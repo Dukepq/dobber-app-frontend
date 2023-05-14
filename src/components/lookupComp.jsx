@@ -10,13 +10,12 @@ import extremesDef from '../extremesDef'
 export default function Lookup(props) {
     const [formData, setFormData] = useState("")
     const {selected, setSelected} = props.selectionHook
-    const {pairs, data, dataObject} = props
+    const {pairs, data, dataObject, className} = props
     const handleChange = (e) => {
         setFormData(() => e.target.value)
     }
-
     return (
-        <div className='lookup-content-wrapper'>
+        <div className={`${className || ""} lookup-content-wrapper`}>
             <img className='looking-glass-img' src={lookingGlass} alt="" />
             <div className='input-dropdown-wrap'>
                 <input className={selected ? "lookup-input lookup-input-hovered" : "lookup-input"} type="text"

@@ -94,7 +94,7 @@ function App() {
                 dataObject = {dataObject} pairs = {pairs} data = {data} userSelectionHooks = {{userSelection, setUserSelection}}
                 />}/>
                 <Route path='docs' element={< Docs />} />
-                  <Route path='app' element={< Screener data = {data} userSelectionHook = {{userSelection, setUserSelection}} sortingHook = {{sorting, setSorting}}/>}/>
+                  <Route path='app' element={< Screener data = {data} userSelectionHook = {{userSelection, setUserSelection}} sortingHook = {{sorting, setSorting}} dataObject = {dataObject} pairs = {pairs}/>}/>
                     <Route path="pair" element={<Pair pairs = {pairs} data = {data} dataObject = {dataObject}/>}>
                       <Route path=":pair" element={< Content data = {data} dataObject = {dataObject}/>}/>
                     </Route>

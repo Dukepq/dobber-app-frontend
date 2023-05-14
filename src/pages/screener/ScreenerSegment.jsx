@@ -1,6 +1,6 @@
 export default function ScreenerSegment(props) {
     const {data} = props
-    const market = data.find((item) => item?.depthData?.pair == props?.pair)
+    const market = data?.find((item) => item?.depthData?.pair == props?.pair)
     return (
         <div className="segment-wrapper">
             <div className="segment-header">

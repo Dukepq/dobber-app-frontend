@@ -7,17 +7,35 @@ import TopScreenerSection from './topScreenerSection'
 import Navbar from '../../navbar'
 import { UserContext } from '../../userContext'
 
+
+
 export default function Screener(props) {
     const {sorting, setSorting} = props.sortingHook
     const [data, setData] = useState(props.data)
+    const [filteredData, setFilteredData] = useState([])
     const [averages, setAverages] = useState({ROBSbAvg: 0, ROBSaAvg: 0, spreadAvg: 0, depthAvg: 0})
     const {userSelection, setUserSelection} = props.userSelectionHook
+    const {dataObject, pairs} = props
+    const [formData, setFormData] = useState("")
+    const handleChange = (e) => {
+      setFormData(() => e.target.value)
+    }
+    useEffect(() => {
+      setFilteredData(() => {
+        return data?.filter((item) => {
+          const searching = formData?.toLowerCase()
+          const currentItem = item.depthData.pair.toLowerCase()
+          return currentItem.startsWith(searching)
+        })
+      })
+    }, [formData])
     useEffect(() => {
         calcAverages(props.data)
         setData(prev => {
             const sortedArray = sortingLogic(sorting, props.data)
             return sortedArray
         })
+
     }, [props.data])
     useEffect(() => {
       try {
@@ -25,6 +43,15 @@ export default function Screener(props) {
         const array = [...data]
         const sortedArray = sortingLogic(sorting, array)
         setData(prev => sortedArray)
+        if (formData.length > 0) {
+          setFilteredData(() => {
+            return data.filter((item) => {
+              const searching = formData?.toLowerCase()
+              const currentItem = item.depthData.pair.toLowerCase()
+              return currentItem.startsWith(searching)
+            })
+          })
+        }
       } catch (err) {
         console.log(err)
       }
@@ -41,17 +68,6 @@ export default function Screener(props) {
         data[i].ROBS?.ROBSb && ROBSaTotal.push(data[i].ROBS.ROBSb)
         data[i].depthData?.data?.spread && (spreadTotal.push(data[i].depthData.data.spread))
         data[i].depthData?.data?.depthRatio && (depthTotal.push(data[i].depthData.data.depthRatio) && count++)
-        // if (data[i].ROBS?.ROBSb && data[i].ROBS?.ROBSb && data[i].depthData?.data?.spread && data[i].depthData?.data?.depthRatio) {
-        //   try {
-        //     ROBSbTotal.push(data[i].ROBS.ROBSb)
-        //     ROBSaTotal.push(data[i].ROBS.ROBSb)
-        //     spreadTotal.push(data[i].depthData.data.spread)
-        //     depthTotal.push(data[i].depthData.data.depthRatio)
-        //     count++
-        //   } catch (err) {
-        //     console.log(err)
-        //   }
-        // }
       }
       ROBSbTotal.sort()
       ROBSaTotal.sort()
@@ -76,6 +92,7 @@ export default function Screener(props) {
                 <div className='description-col description-col-1 col'>
                   <ExtraInfo textContent = {"The full pair name consisting of the base and quote."}/>
                     <span onClick={() => setSorting(prev => ({field: "name", ascending: !prev.ascending}))}>Name</span>
+                    <form><input className='screener-input-field' onChange={handleChange} value={formData} type="text" /></form>
                     </div>
                 <div className='description-col description-col-2 col'>
                     <ExtraInfo textContent = {"The exchange this pair is trading on."} />
@@ -106,7 +123,7 @@ export default function Screener(props) {
                 </div>
             </div>
             <div className='screener-data-content'>
-            {data?.map((obj, index) => {
+            {(formData.length > 0 ? filteredData : data)?.map((obj, index) => {
               return < AnalyticsColumns
                 key = {index}
                 id = {index}

@@ -53,9 +53,7 @@
 #light .navbar-nav li:not(.navbar-nav li:first-child):hover {
     background-color: rgb(218, 218, 218);
 }
-#dark .navbar-nav li:not(.navbar-nav li:first-child):hover {
-    background-color: var(--primary-color-2);
-}
+
 
 .navbar-nav img:not(.nav-logo) {
     max-width: calc(1/3 * var(--nav-width));
@@ -79,7 +77,9 @@
 
 .navigation:hover {
     width: calc(var(--nav-width) * 2.6);
+    box-shadow: 10px 0px 10px 0px rgba(0,0,0,0.25);
 }
+
 
 .navigation:hover .nav-logo {
     transform: rotate(90deg);

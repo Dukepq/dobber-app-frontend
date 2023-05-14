@@ -43,10 +43,10 @@ export default function Navbar() {
                     <div onClick={toggleTheme}>
                         {theme === "dark" ?
                         <img aria-hidden="true" className="navbar-item-image"src={lightModeImage} alt="light mode"
-                            style={{filter: "invert(1)"}}
+                            style={{filter: "invert(100%) sepia(6%) saturate(0%) hue-rotate(115deg) brightness(108%) contrast(108%)"}}
                         /> : 
                         <img aria-hidden="true" className="navbar-item-image"src={darkModeImage} alt="dark mode"
-                        style={{filter: "invert(0)"}}/>
+                        style={{filter: "none"}}/>
                         }
                         <span className='nav-text'>{theme === "dark" ? "light mode" : "dark mode"}</span>
                     </div>
