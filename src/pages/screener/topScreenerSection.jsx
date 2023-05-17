@@ -12,7 +12,7 @@ export default function TopScreenerSection(props) {
             headers: {
                 "Content-Type": "application/json",
                 "Content-Length": key.length.toString(),
-                "X-Custom-Header": key.toString(),
+                "X-Token": key.toString(),
             },
             method: "GET"
         })
@@ -26,7 +26,7 @@ export default function TopScreenerSection(props) {
             headers: {
                 "Content-Type": "application/json",
                 "Content-Length": key.length.toString(),
-                "X-Custom-Header": key.toString(),
+                "X-Token": key.toString(),
             },
             method: "GET"
         })
@@ -45,7 +45,7 @@ export default function TopScreenerSection(props) {
                 headers: {
                     "Content-Type": "application/json",
                     "Content-Length": key.length.toString(),
-                    "X-Custom-Header": key.toString(),
+                    "X-Token": key.toString(),
                 },
                 method: "GET"
             })

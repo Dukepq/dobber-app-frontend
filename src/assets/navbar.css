@@ -68,6 +68,7 @@
     color: var(--primary-text-color);
     position: relative;
     right: var(--nav-width);
+    white-space: nowrap;
 }
 
 .navbar-nav li:first-child {

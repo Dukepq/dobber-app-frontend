@@ -150,12 +150,27 @@
 }
 
 .specific-content-wrapper {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     gap: 1.2rem;
 }
 
-.specific-content-column p {
+.specific-content-area p {
     font-weight: 700;
     font-size: 1.5rem;
+}
+.specific-content-area {
+    min-height: 10rem;
+    padding: 1rem;
+    border: 1px solid white;
+    border-radius: 1rem;
+}
+
+.pair-content-simple-wrapper {
+    margin-top: 1rem;
+}
+
+.specific-pair-header {
+    margin: 1rem 0
 }

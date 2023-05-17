@@ -4,8 +4,9 @@ import AnalyticsColumns from './AnalyticsColumns'
 import sortingLogic from '../../utils/non-pure/sortingLogic'
 import ExtraInfo from '../../components/extraInfo'
 import TopScreenerSection from './topScreenerSection'
-import Navbar from '../../navbar'
-import { UserContext } from '../../userContext'
+import minusImage from "../../assets/square-minus-regular.svg"
+import plusImage from "../../assets/circle-plus-solid.svg"
+import { ThemeContext } from '../../useTheme'
 
 
 
@@ -17,20 +18,32 @@ export default function Screener(props) {
     const {userSelection, setUserSelection} = props.userSelectionHook
     const {dataObject, pairs} = props
     const [formData, setFormData] = useState("")
+    const [toggle, setToggle] = useState((false))
+    const [indicators, setIndicators] = useState(() => [
+      {name: "depth ratio", indicator: "depthRatio", iUnit: ""},
+      {name: "price", indicator: "price", iUnit: "€"},
+      {name: "PoP vol.", indicator: "PoP", iUnit: ""}
+    ])
+    const [selectedIndicator, setSelectedIndicator] = useState(() => [])
+    const {theme} = useContext(ThemeContext)
     const handleChange = (e) => {
       setFormData(() => e.target.value)
     }
     useEffect(() => {
       setFilteredData(() => {
         return data?.filter((item) => {
-          const searching = formData?.toLowerCase()
-          const currentItem = item.depthData.pair.toLowerCase()
-          return currentItem.startsWith(searching)
+          try {
+            const searching = formData.toLowerCase()
+            const currentItem = item.depthData.pair.toLowerCase()
+            return currentItem.startsWith(searching)
+          } catch (err) {
+            console.log(err)
+          }
+          
         })
       })
     }, [formData])
     useEffect(() => {
-        calcAverages(props.data)
         setData(prev => {
             const sortedArray = sortingLogic(sorting, props.data)
             return sortedArray
@@ -39,7 +52,6 @@ export default function Screener(props) {
     }, [props.data])
     useEffect(() => {
       try {
-        calcAverages(data)
         const array = [...data]
         const sortedArray = sortingLogic(sorting, array)
         setData(prev => sortedArray)
@@ -56,42 +68,21 @@ export default function Screener(props) {
         console.log(err)
       }
     }, [sorting])
-    const calcAverages = (data) => {
-      if (!data || (data.length < 1)) return
-      let count = 0
-      let ROBSbTotal = []
-      let ROBSaTotal = []
-      let spreadTotal = []
-      let depthTotal = []
-      for (let i = 0; i < data.length; i++) {
-        data[i].ROBS?.ROBSb && ROBSbTotal.push(data[i].ROBS.ROBSb)
-        data[i].ROBS?.ROBSb && ROBSaTotal.push(data[i].ROBS.ROBSb)
-        data[i].depthData?.data?.spread && (spreadTotal.push(data[i].depthData.data.spread))
-        data[i].depthData?.data?.depthRatio && (depthTotal.push(data[i].depthData.data.depthRatio) && count++)
-      }
-      ROBSbTotal.sort()
-      ROBSaTotal.sort()
-      spreadTotal.sort()
-      depthTotal.sort()
-      
-      const ROBSbAvg = ROBSbTotal[Math.round(ROBSbTotal.length/2)]
-      const ROBSaAvg = ROBSaTotal[Math.round(ROBSaTotal.length/2)]
-      const spreadAvg = spreadTotal[Math.round(spreadTotal.length/2)]
-      const depthAvg = depthTotal[Math.round(depthTotal.length/2)]
-      setAverages(prev => {
-        return {...prev, ROBSbAvg, ROBSaAvg, spreadAvg, depthAvg}
-      })
+    const toggleDropDown = () => {
+      setToggle(prev => !prev)
     }
     return (
       <>
         <TopScreenerSection data = {data}/>
-        <main className="main">
+        <main className="main" onClick={() => {
+          toggle && setToggle(() => false)
+        }}>
           <div className='data-wrapper'>
             <div className="description-row row">
                 <div className='description-col description-col-1 col'>
                   <ExtraInfo textContent = {"The full pair name consisting of the base and quote."}/>
                     <span onClick={() => setSorting(prev => ({field: "name", ascending: !prev.ascending}))}>Name</span>
-                    <form><input className='screener-input-field' onChange={handleChange} value={formData} type="text" /></form>
+                    <input className='screener-input-field' onChange={handleChange} value={formData} type="text" />
                     </div>
                 <div className='description-col description-col-2 col'>
                     <ExtraInfo textContent = {"The exchange this pair is trading on."} />
@@ -120,6 +111,23 @@ export default function Screener(props) {
                   <ExtraInfo textContent = {"Shows you recent average volume (€/min)"} />
                   <span onClick={() => setSorting(prev => ({field: "volume", ascending: !prev.ascending}))}>Recent volume</span>
                 </div>
+                {selectedIndicator.length > 0 && (
+                  <div className='description-col description-col-custom col'>
+                    <img className='clear-custom-indicator-image' onClick={() => setSelectedIndicator([])} src={minusImage} alt="" />
+                    <span>{selectedIndicator[0].name}</span>
+                  </div>
+                )}
+                {selectedIndicator.length < 1 && <div onClick={toggleDropDown} className='description-col description-col-8 col'>
+                  <img className='add-indicator-image' src={plusImage} alt="add"/>
+                  {toggle && <div className='custom-indicator-menu-wrapper'>
+                    <p className='p-indicator-menu'>Add an indicator</p>
+                    {indicators.map((item, index) => {
+                    return <li key={index} id={index}
+                    onClick={(e) => setSelectedIndicator(() => [indicators[Number(e.target.id)]])}
+                    ><span>{item.name}</span></li>
+                    })}
+                    </div>}
+                </div>}
             </div>
             <div className='screener-data-content'>
             {(formData.length > 0 ? filteredData : data)?.map((obj, index) => {
@@ -137,6 +145,8 @@ export default function Screener(props) {
                 price = {obj?.depthData?.data?.price}
                 volatilityIndex = {(obj?.volumeData?.volatilityArray?.reduce((acc, cur) => acc + cur) / 6) * 100}
                 userSelectionHook = {{userSelection, setUserSelection}}
+                selectedIndicator = {selectedIndicator}
+                PoP = {obj?.volumeData?.periodOverPeriod}
               />
             })}
             </div>

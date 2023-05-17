@@ -38,13 +38,13 @@ function App() {
       headers: {
         "Content-Type": "text/plain",
         "Content-Length": key.length.toString(),
-        "X-Custom-Header": key.toString()
+        "X-Token": key.toString()
       },
       method: "GET"
     })
         .then(res => res.json())
         .then(data => {
-          setDataObject(() => data.data)
+          setDataObject(() => structuredClone(data.data))
           const ObjPairs = Object.keys(data.data)
           const array = ObjPairs.map(key => data.data[key])
           
@@ -54,19 +54,18 @@ function App() {
         .catch(err => console.log(err))
   }, [])
   useEffect(() => {
-
     const interval = setInterval(() => {
       fetch('http://localhost:5003/api/v1/data', {
         headers: {
           "Content-Type": "text/plain",
           "Content-Length": key.length.toString(),
-          "X-Custom-Header": key.toString()
+          "X-Token": key.toString()
         },
         method: "GET"
       })
         .then(res => res.json())
         .then(data => {
-          setDataObject(() => data.data)
+          setDataObject(() => structuredClone(data.data))
           const ObjPairs = Object.keys(data.data)
           const array = ObjPairs.map(key => data.data[key])
           

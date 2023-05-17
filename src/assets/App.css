@@ -77,6 +77,15 @@ main {
 .col-5, .description-col-5, .col-6, .description-col-6, .col-7, .description-col-7 {
     width: 80%;
 }
+.description-col-8 {
+    width: 25%;
+    user-select: none;
+    justify-content: end;
+}
+
+.col-8 {
+    width: 25%;
+}
 
 .col-1,.description-col-1 {
     display: flex;
@@ -107,7 +116,7 @@ main {
     border: 1px solid var(--primary-color-2);
     padding-left: .8rem;
     font-size: 1rem;
-    color: white;
+    color: var(--primary-text-color);
     transition: width 300ms ease;
     outline: none;
 }
@@ -122,6 +131,10 @@ main {
     height: 3.6rem;
     position: sticky;
     z-index: 3;
+}
+
+.description-row span {
+    white-space: nowrap;
 }
 
 .row a {
@@ -160,6 +173,7 @@ main {
 .hover-container img {
     width: 100%;
     height: 100%;
+    filter: grayscale(1) opacity(0.65)
 }
 
 .display-on-hover {
@@ -256,10 +270,6 @@ main {
     border-radius: 0.3rem;
 }
 
-.exclamation {
-    filter: brightness(1.25)
-}
-
 .indicator-img {
     filter: invert(0.6);
 }
@@ -288,4 +298,75 @@ main {
     cursor: pointer;
     transition: opacity 300ms;
     margin-right: 1rem;
+}
+.custom-indicator-menu-wrapper {
+    position: absolute;
+    top: 2.5rem;
+    right: 0.9rem;
+    background-color: var(--primary-color-2);
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+    overflow: hidden;
+    border-radius: 0.5rem 0 0.5rem 0.5rem;
+}
+
+
+.custom-indicator-menu-wrapper > li {
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    cursor: pointer;
+    background-color: var(--primary-color-4);
+    width: 100%;
+    list-style: disc;
+}
+#dark .custom-indicator-menu-wrapper li:hover {
+    filter: brightness(1.1)
+}
+#light .custom-indicator-menu-wrapper li:hover {
+    filter: brightness(0.9)
+}
+.custom-indicator-menu-wrapper span {
+    font-weight: 500;
+}
+
+.col-custom, .description-col-custom {
+    width: 60%;
+}
+
+.clear-custom-indicator-image {
+    width: 1rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+#dark .clear-custom-indicator-image {
+    filter: invert(0.2)
+}
+
+#light .add-indicator-image {
+    width: 1.2rem;
+    height: 1.2rem;
+    filter: invert(8%) sepia(100%) saturate(7150%) hue-rotate(247deg) brightness(95%) contrast(143%);
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+#dark .add-indicator-image {
+    width: 1.2rem;
+    height: 1.2rem;
+    filter: invert(0.25);
+    cursor: pointer;
+}
+
+.add-indicator-image:hover {
+    transform: scale(1.1);
+    transition: transform 200ms;
+}
+
+.p-indicator-menu {
+    padding: 1rem;
+    background-color: var(--primary-color-2);
+    font-weight: 700;
 }

@@ -11,7 +11,7 @@ export default function ExtraInfo(props) {
         <div className='hover-container'>
             <p style={{color: "var(--primary-text-color)"}} className={`display-on-hover ${hovered ? "active" : ""}`} >{props.textContent}</p>
             <img className={`exclamation`} src={questionMark} onMouseEnter={handleHover} onMouseLeave={handleHover} alt=""
-            style={{filter: "grayscale(1)"}}/>
+            />
         </div>
     )
 }

@@ -35,9 +35,9 @@ function sortingLogic(sorting, array) {
       case "volume":
         sortedArray = sortByVolume(array)
         break
-        case "volatilityIndex":
-          sortedArray = sortByVolatilityIndex(array)
-          break
+      case "volatilityIndex":
+        sortedArray = sortByVolatilityIndex(array)
+        break
       default:
         sortedArray = sortByName(array)
         break
