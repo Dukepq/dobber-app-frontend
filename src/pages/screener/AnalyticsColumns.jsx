@@ -41,7 +41,7 @@ export default function AnalyticsColumns(props) {
             <div style={{}} className={`col col-7 col-7-row-${props.id ?? 1}`}><span>{props.volumeData ? Number((props.volumeData)?.toFixed(2)).toLocaleString('de-DE', {style: "currency", currency: "EUR"}) : "0" }</span></div>
             {selectedIndicator?.length > 0 && (
                 <div className={`col col-custom col-custom-row-${props.id ?? 1}`}>
-                    <span>{`${props[selectedIndicator[0].indicator] ? props[selectedIndicator[0].indicator]?.toLocaleString('de-DE', {maximumFractionDigits: 3}) : "-"} ${selectedIndicator[0]?.iUnit}`}</span>
+                    <span>{`${props[selectedIndicator[0]?.indicator] ? props[selectedIndicator[0]?.indicator]?.toLocaleString('de-DE', {maximumFractionDigits: 3}) : "-"} ${selectedIndicator[0]?.iUnit}`}</span>
                 </div>
             )}
             {selectedIndicator.length < 1 && <div className={`col col-8 col-8-row-${props.id ?? 1}`}></div>}

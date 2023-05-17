@@ -6,18 +6,25 @@ import risingImage from '../../assets/rising.svg'
 
 export default function IndicatorRow(props) {
     const {pairData, pair} = props
+    console.log(pairData)
     const indicatorImagePairs = [
-        {indicator: ed.ROBS, pairValue: pairData.ROBS, image: lowLqImage},
-        {indicator: ed.spread, pairValue: pairData.spread, image: spreadImage},
-        {indicator: ed.recentVolume, pairValue: pairData.recentVolume, image: volumeImage},
+        {indicator: ed.ROBS, pairValue: pairData?.ROBS?.ROBSb, image: lowLqImage},
+        {indicator: ed.spread, pairValue: pairData?.depthData?.data?.spread, image: spreadImage},
+        {indicator: ed.recentVolume, pairValue: pairData?.volumeData?.averageVolume, image: volumeImage},
     ]
     console.log(indicatorImagePairs)
     
     return (
         <>
-            {indicatorImagePairs.map((item, index) => {
-                item.indicator
-            })}
+            {indicatorImagePairs.filter(item => {
+                console.log(item)
+                console.log(item.indicator < item.pairValue)
+                return (item.indicator > item.pairValue)
+            }).map((item, index) => {
+                console.log('mapping')
+                return <div key={index}><img src={item.image}></img></div>
+            })
+            }
         </>
     )
 }

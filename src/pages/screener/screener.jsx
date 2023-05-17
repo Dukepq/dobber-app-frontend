@@ -114,7 +114,7 @@ export default function Screener(props) {
                 {selectedIndicator.length > 0 && (
                   <div className='description-col description-col-custom col'>
                     <img className='clear-custom-indicator-image' onClick={() => setSelectedIndicator([])} src={minusImage} alt="" />
-                    <span>{selectedIndicator[0].name}</span>
+                    <span>{selectedIndicator[0]?.name}</span>
                   </div>
                 )}
                 {selectedIndicator.length < 1 && <div onClick={toggleDropDown} className='description-col description-col-8 col'>
@@ -122,9 +122,12 @@ export default function Screener(props) {
                   {toggle && <div className='custom-indicator-menu-wrapper'>
                     <p className='p-indicator-menu'>Add an indicator</p>
                     {indicators.map((item, index) => {
-                    return <li key={index} id={index}
-                    onClick={(e) => setSelectedIndicator(() => [indicators[Number(e.target.id)]])}
-                    ><span>{item.name}</span></li>
+                    return <li key={index} data-index-src={index}
+                    onClick={(e) => setSelectedIndicator(() => {
+                      console.log(e.target)
+                      console.log(Number(e.target.dataset.indexSrc))
+                      return [indicators[Number(e.target.dataset.indexSrc)]]})}
+                    ><span key={index} data-index-src={index}>{item?.name}</span></li>
                     })}
                     </div>}
                 </div>}

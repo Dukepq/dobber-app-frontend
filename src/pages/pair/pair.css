@@ -174,3 +174,16 @@
 .specific-pair-header {
     margin: 1rem 0
 }
+
+.specific-pair-header-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.specific-pair-header-wrapper > div {
+    height: 1rem;
+}
+.specific-pair-header-wrapper img {
+    height: 100%;
+}
