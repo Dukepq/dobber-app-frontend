@@ -44,8 +44,6 @@
     border-radius: 50vw;
 }
 
-
-
 .looking-glass-img {
     height: 60%;
 }
@@ -67,6 +65,10 @@
     transition: border-radius 300ms ease
 }
 
+.input-dropdown-wrap > input:autofill {
+    background-color: black;
+}
+
 .lookup-input-hovered {
     transition: 100ms;
 }
@@ -75,7 +77,6 @@
     border: none;
     outline: none;
 }
-
 
 .input-dropdown-wrap {
     height: 100%;
