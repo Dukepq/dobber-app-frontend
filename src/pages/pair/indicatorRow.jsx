@@ -8,18 +8,15 @@ export default function IndicatorRow(props) {
     const {pairData, pair} = props
     console.log(pairData)
     const indicatorImagePairs = [
-        {indicator: ed.ROBS, pairValue: pairData?.ROBS?.ROBSb, image: lowLqImage},
-        {indicator: ed.spread, pairValue: pairData?.depthData?.data?.spread, image: spreadImage},
-        {indicator: ed.recentVolume, pairValue: pairData?.volumeData?.averageVolume, image: volumeImage},
+        {x: ed.ROBS, y: pairData?.ROBS?.ROBSb, image: lowLqImage},
+        {x: ed.ROBS, y: pairData?.ROBS?.ROBSa, image: lowLqImage},
+        {x: pairData?.depthData?.data?.spread, y: ed.spread, image: spreadImage},
+        {x: (pairData?.volumeData?.averageVolume * pairData?.depthData?.data?.price), y: ed.recentVolume, image: volumeImage},
     ]
-    console.log(indicatorImagePairs)
-    
     return (
         <>
             {indicatorImagePairs.filter(item => {
-                console.log(item)
-                console.log(item.indicator < item.pairValue)
-                return (item.indicator > item.pairValue)
+                return item.x > item.y
             }).map((item, index) => {
                 console.log('mapping')
                 return <div key={index}><img src={item.image}></img></div>

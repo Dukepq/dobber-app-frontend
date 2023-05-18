@@ -11,8 +11,6 @@
     background: var(--primary-color-3);
 }
 
-/* main stuff */
-
 main {
     min-height: 100vh;
     min-width: fit-content;

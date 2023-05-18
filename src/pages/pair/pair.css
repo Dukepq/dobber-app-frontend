@@ -38,6 +38,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    border: 1px solid var(--primary-color-2);
     background-color: var(--primary-color-4);
     padding-left: 0.5rem;
     border-radius: 50vw;
@@ -49,15 +50,19 @@
     height: 60%;
 }
 
+#light .looking-glass-img {
+    filter: invert(8%) sepia(100%) saturate(7199%) hue-rotate(248deg) brightness(97%) contrast(143%);
+}
+
 .lookup-input {
     display: block;
     height: 100%;
     border: none;
     border-radius: 50vw;
-    background-color: var(--primary-color-4);
+    background-color: transparent;
     padding-left: .8rem;
     font-size: 0.8rem;
-    color: white;
+    color: var(--primary-text-color);
     width: 100%;
     transition: border-radius 300ms ease
 }

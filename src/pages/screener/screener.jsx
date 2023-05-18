@@ -39,7 +39,6 @@ export default function Screener(props) {
           } catch (err) {
             console.log(err)
           }
-          
         })
       })
     }, [formData])
@@ -48,7 +47,6 @@ export default function Screener(props) {
             const sortedArray = sortingLogic(sorting, props.data)
             return sortedArray
         })
-
     }, [props.data])
     useEffect(() => {
       try {
