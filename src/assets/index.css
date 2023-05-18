@@ -31,6 +31,7 @@
   --primary-text-color: black;
   --primary-fade: rgb(255, 255, 255);
   --background-color: white;
+  --blue-filter: invert(8%) sepia(100%) saturate(7199%) hue-rotate(248deg) brightness(97%) contrast(143%);
   background: var(--primary-fade);
   transition: background-color 200ms ease;
 }

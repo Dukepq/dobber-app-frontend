@@ -193,3 +193,6 @@
 .specific-pair-header-wrapper img {
     height: 100%;
 }
+#light .specific-pair-header-wrapper img {
+    filter: var(--blue-filter)
+}

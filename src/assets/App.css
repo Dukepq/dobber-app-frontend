@@ -276,6 +276,7 @@ main {
     display: flex;
     align-items: end;
     gap: 1rem;
+    white-space: nowrap;
 }
 
 .segment-data {
@@ -365,6 +366,6 @@ main {
 
 .p-indicator-menu {
     padding: 1rem;
-    background-color: var(--primary-color-2);
+    background-color: var(--primary-color-4);
     font-weight: 700;
 }
