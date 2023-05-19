@@ -34,7 +34,7 @@ export default function HomePair(props) {
                     <p className="home-pair-clip">{`${data?.depthData?.data?.price?.toLocaleString('de-DE', {style: "currency", currency: "EUR", maximumFractionDigits: 6})}`}</p>
                     <img className='indicator-img' src={
                         (Number(data?.ROBS?.ROBSb) < extremesDef.ROBS || Number(data?.ROBS?.ROBSa) < extremesDef.ROBS)
-                        ?  lowLqImage : (Number(data?.depthData?.data?.spread) * 100 > extremesDef.spread)
+                        ?  lowLqImage : (Number(data?.depthData?.data?.spread) > extremesDef.spread)
                         ?  spreadImage : (Number(data?.volumeData?.averageVolume) * Number(data?.depthData?.data?.price) > extremesDef.recentVolume)
                         ?  volumeImage : (Number(data?.depthData?.data?.depthRatio) < extremesDef.depthRatioB || Number(data?.depthData?.data?.depthRatio) > extremesDef.depthRatioA)
                         ?  risingImage : null
