@@ -5,6 +5,10 @@ import { useContext } from "react"
 import { ThemeContext } from "./useTheme"
 import darkModeImage from "./assets/toggle-on-solid.svg"
 import lightModeImage from "./assets/toggle-off-solid.svg"
+import dobberLogoImage from "./assets/DobberLogo.svg"
+import docsImage from "./assets/docs-icon.svg"
+import coinImage from "./assets/coins-solid.svg"
+import homeImage from "./assets/home.svg"
 
 export default function Navbar() {
     const {theme, toggleTheme} = useContext(ThemeContext)
@@ -13,11 +17,11 @@ export default function Navbar() {
         <nav className="navigation">
             <ul className="navbar-nav">
                 <li>
-                    <img className='nav-logo' src="/DobberLogo.svg" alt="logo" />
+                    <img className='nav-logo' src={dobberLogoImage} alt="logo" />
                 </li>
                 <li>
                     <Link to="/home">
-                        <img aria-hidden="true" className="navbar-item-image"src="/home.svg" alt="" />
+                        <img aria-hidden="true" className="navbar-item-image" src={homeImage} alt="" />
                         <span className='nav-text'>Homepage</span>
                     </Link>
                 </li>
@@ -29,13 +33,13 @@ export default function Navbar() {
                 </li>
                 <li>
                     <Link to="/app">
-                        <img aria-hidden="true" className="navbar-item-image"src="/coins-solid.svg" alt="" />
+                        <img aria-hidden="true" className="navbar-item-image"src={coinImage} alt="" />
                         <span className='nav-text'>Screener</span>
                     </Link>
                 </li>
                 <li>
                     <Link to="/docs">
-                        <img aria-hidden="true" className="navbar-item-image"src="/docs-icon.svg" alt="" />
+                        <img aria-hidden="true" className="navbar-item-image"src={docsImage} alt="" />
                         <span className='nav-text'>Docs</span>
                     </Link>
                 </li>
