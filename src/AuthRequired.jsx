@@ -6,7 +6,7 @@ export default function AuthRequired(props) {
     const {key, setKey} = useContext(UserContext)
     const {auth, setAuth} = props
     useEffect(() => {
-            fetch("http://localhost:5003/val", {
+            fetch("http://104.248.18.145/api/val", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
