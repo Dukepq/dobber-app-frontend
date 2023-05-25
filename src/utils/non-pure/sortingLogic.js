@@ -30,7 +30,7 @@ function sortingLogic(sorting, array) {
         sortedArray = sortByExchangeName(array)
         break
       case "name":
-        sortedArray = sortByName(array)
+        sortedArray = sortByName(array, sorting.ascending) 
         break
       case "volume":
         sortedArray = sortByVolume(array)

@@ -1,12 +1,12 @@
 import { Outlet, Navigate } from "react-router-dom"
-import { useState, useContext, useEffect } from "react"
+import { useState, useContext, useEffect, useLayoutEffect } from "react"
 import { UserContext } from "./userContext"
 
 export default function AuthRequired(props) {
     const {key, setKey} = useContext(UserContext)
     const {auth, setAuth} = props
-    useEffect(() => {
-            fetch("http://104.248.18.145/api/val", {
+    useLayoutEffect(() => {
+            fetch("http://localhost:8003/api/val", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -25,13 +25,10 @@ export default function AuthRequired(props) {
                 setAuth(() => false)
             }
         })
-        
-        
     }, [])
     if (auth) {
         return <Outlet />
     } else {
         return <Navigate to="/login" />
     }
-
 }

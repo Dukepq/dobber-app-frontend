@@ -8,7 +8,7 @@ export default function TopScreenerSection(props) {
     const {data} = props
     const {key} = useContext(UserContext)
     useEffect(() => {
-        fetch('http://104.248.18.145/api/v1/daily/total', {
+        fetch('http://localhost:8003/api/v1/daily/total', {
             headers: {
                 "Content-Type": "application/json",
                 "Content-Length": key.length.toString(),
@@ -22,7 +22,7 @@ export default function TopScreenerSection(props) {
         })
     }, [])
     useEffect(() => {
-        fetch('http://104.248.18.145/api/v1/daily/largest', {
+        fetch('http://localhost:8003/api/v1/daily/largest', {
             headers: {
                 "Content-Type": "application/json",
                 "Content-Length": key.length.toString(),
@@ -35,13 +35,13 @@ export default function TopScreenerSection(props) {
                 setLargestPairs(prev => {
                     let pairs = []
                     for (let i = 0; i < 3; i++) {
-                        pairs.push(data.largestDaily[i])
+                        pairs.push(data?.largestDaily?.[i])
                     }
                     return pairs
                 })
             })
         const interval = setInterval(() => {
-            fetch('http://104.248.18.145/api/v1/daily/largest', {
+            fetch('http://localhost:8003/api/v1/daily/largest', {
                 headers: {
                     "Content-Type": "application/json",
                     "Content-Length": key.length.toString(),
@@ -77,8 +77,8 @@ export default function TopScreenerSection(props) {
                     return <ScreenerSegment
                     key = {index}
                     id = {index}
-                    pair = {largestPairs[index].market}
-                    volumeQuote = {largestPairs[index].volumeQuote}
+                    pair = {largestPairs[index]?.market}
+                    volumeQuote = {largestPairs[index]?.volumeQuote}
                     data = {data}
                     />
                 })}

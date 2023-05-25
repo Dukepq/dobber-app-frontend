@@ -15,7 +15,7 @@ export default function Login(props) {
         if (data.success) {
             setKey(() => data.token)
             setAuth(() => true)
-            window.location.href = "/app"
+            window.location.href = "/app" // causes loss of state
         }
         setFormData(() => "")
     }
@@ -39,7 +39,7 @@ export default function Login(props) {
     //     }
     // })
     // }, [key])
-    if (auth) return <Navigate to="/app" />
+    // if (auth) return <Navigate to="/app" />
     return (
     <div className="container">
         <div className="wrapper">

@@ -19,7 +19,7 @@ export default function Lookup(props) {
         <div className={`${className || ""} lookup-content-wrapper`}>
             <img className='looking-glass-img' src={lookingGlass} alt="" />
             <div className='input-dropdown-wrap'>
-                <input autocomplete="off" className={selected ? "lookup-input lookup-input-hovered" : "lookup-input"} id='lookup-input-1' type="text"
+                <input autoComplete="off" className={selected ? "lookup-input lookup-input-hovered" : "lookup-input"} id='lookup-input-1' type="text"
                     value={formData} onChange={handleChange} onClick={() => setSelected(prev => true)}
                     onKeyDown={(e) => {
                         e.key === "Escape" && setSelected(() => false)

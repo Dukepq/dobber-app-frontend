@@ -34,7 +34,7 @@ function App() {
   }, [key])
   useEffect(() => {
 
-    fetch('http://104.248.18.145/api/v1/data', {
+    fetch('http://localhost:8003/api/v1/data', {
       headers: {
         "Content-Type": "text/plain",
         "Content-Length": key.length.toString(),
@@ -55,7 +55,7 @@ function App() {
   }, [])
   useEffect(() => {
     const interval = setInterval(() => {
-      fetch('http://104.248.18.145/api/v1/data', {
+      fetch('http://localhost:8003/api/v1/data', {
         headers: {
           "Content-Type": "text/plain",
           "Content-Length": key.length.toString(),
@@ -84,7 +84,6 @@ function App() {
   return (
     <div id={theme}>
       <UserContext.Provider value={{key, setKey}}>
-      
       <BrowserRouter>
         <Routes>
             <Route element={<AuthRequired auth={auth} setAuth={setAuth}/>}>

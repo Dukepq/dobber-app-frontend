@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext, createContext } from 'react'
 import '../../assets/App.css'
 import AnalyticsColumns from './AnalyticsColumns'
 import sortingLogic from '../../utils/non-pure/sortingLogic'
@@ -7,8 +7,6 @@ import TopScreenerSection from './topScreenerSection'
 import minusImage from "../../assets/square-minus-regular.svg"
 import plusImage from "../../assets/circle-plus-solid.svg"
 import { ThemeContext } from '../../useTheme'
-
-
 
 export default function Screener(props) {
     const {sorting, setSorting} = props.sortingHook
@@ -65,10 +63,11 @@ export default function Screener(props) {
       } catch (err) {
         console.log(err)
       }
-    }, [sorting])
+    }, [sorting?.field, sorting?.ascending, userSelection])
     const toggleDropDown = () => {
       setToggle(prev => !prev)
     }
+
     return (
       <>
         <TopScreenerSection data = {data}/>

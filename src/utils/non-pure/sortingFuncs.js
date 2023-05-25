@@ -30,7 +30,8 @@ export const sortBySpread = (array) => {
     return sorted
   }
 
-  export const sortByName = (array) => {
+  export const sortByName = (array, sorting) => {
+    const favourites = JSON.parse(window.localStorage.getItem("DOBBER_USER_PREFERRED_SELECTION#981"))
     const sorted = array?.sort((a, b) => {
       if (a?.depthData?.pair.toUpperCase() < b?.depthData?.pair.toUpperCase()) return -1
       if (a?.depthData?.pair.toUpperCase() > b?.depthData?.pair.toUpperCase()) return 1
@@ -56,7 +57,7 @@ export const sortBySpread = (array) => {
   }
 
   export const sortByVolatilityIndex = (array) => {
-    const sorted = array.sort((a, b) => {
+    const sorted = array?.sort((a, b) => {
       const tempA = a.volumeData?.volatilityArray?.reduce((acc, cur) => acc + cur)
       const tempB = b.volumeData?.volatilityArray?.reduce((acc, cur) => acc + cur)
       if ((tempA || -Infinity) < (tempB || -Infinity)) return -1
