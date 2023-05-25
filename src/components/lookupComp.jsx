@@ -5,6 +5,7 @@ import spreadImage from '../assets/spread.svg'
 import lowLqImage from '../assets/lowLiquidity.svg'
 import volumeImage from '../assets/water.svg'
 import risingImage from '../assets/rising.svg'
+import zeroImage from '../assets/0-solid.svg'
 import extremesDef from '../extremesDef'
 
 export default function Lookup(props) {
@@ -31,13 +32,14 @@ export default function Lookup(props) {
                     const currentItem = item.toLowerCase()
                     return currentItem.startsWith(searching)
                 }).map((item, index) => {
-                    return <Link className='dropdown-menu-pair' to={`/pair/${item}`} key={index}> <div> {item}
+                    return <Link className='dropdown-menu-pair' to={`/pair/${item}`} key={index}> <div> <span>{item}</span>
                     {
                         (Number(dataObject[item]?.ROBS?.ROBSb) < extremesDef.ROBS || Number(dataObject[item]?.ROBS?.ROBSa) < extremesDef.ROBS)
                         ? <img className='indicator-img' src={lowLqImage}></img> : (Number(dataObject[item]?.depthData?.data?.spread) > extremesDef.spread)
                         ? <img className='indicator-img' src={spreadImage}></img> : (Number(dataObject[item]?.volumeData?.averageVolume) * Number(dataObject[item]?.depthData?.data?.price) > extremesDef.recentVolume)
                         ? <img className='indicator-img' src={volumeImage}></img> : (Number(dataObject[item]?.depthData?.data?.depthRatio) < extremesDef.depthRatioB || Number(dataObject[item]?.depthData?.data?.depthRatio) > extremesDef.depthRatioA)
-                        ? <img className='indicator-img' src={risingImage}></img> : null
+                        ? <img className='indicator-img' src={risingImage}></img> : (Number(dataObject[item]?.volumeData?.averageVolume) * Number(dataObject[item]?.depthData?.data?.price) <= 0)
+                        ? <img className='indicator-img' src={zeroImage}></img> : null
                     }
                     </div></Link>
                 })}

@@ -109,8 +109,8 @@
 }
 
 .dropdown-menu-pair {
-    display: grid;
-    place-content: center;
+    display: flex;
+    padding: 0 1rem;
     width: 100%;
     min-height: 2.5rem;
 }
@@ -127,16 +127,16 @@
 }
 
 .dropdown-menu-pair > div {
+    width: 100%;
     color: var(--primary-text-color);
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .search-nav::-webkit-scrollbar {
     width: 0;
 }
-
-
 
 /* @keyframes menu-expand {
     from {transform: translateX(100%)}
