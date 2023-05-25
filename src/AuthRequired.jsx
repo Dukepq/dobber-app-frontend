@@ -6,7 +6,7 @@ export default function AuthRequired(props) {
     const {key, setKey} = useContext(UserContext)
     const {auth, setAuth} = props
     useLayoutEffect(() => {
-            fetch("http://localhost:8003/api/val", {
+            fetch("http://104.248.18.145/api/val", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

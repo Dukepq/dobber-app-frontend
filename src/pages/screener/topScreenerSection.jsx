@@ -8,7 +8,7 @@ export default function TopScreenerSection(props) {
     const {data} = props
     const {key} = useContext(UserContext)
     useEffect(() => {
-        fetch('http://localhost:8003/api/v1/daily/total', {
+        fetch('http://104.248.18.145/api/v1/daily/total', {
             headers: {
                 "Content-Type": "application/json",
                 "Content-Length": key.length.toString(),
@@ -22,7 +22,7 @@ export default function TopScreenerSection(props) {
         })
     }, [])
     useEffect(() => {
-        fetch('http://localhost:8003/api/v1/daily/largest', {
+        fetch('http://104.248.18.145/api/v1/daily/largest', {
             headers: {
                 "Content-Type": "application/json",
                 "Content-Length": key.length.toString(),
@@ -41,7 +41,7 @@ export default function TopScreenerSection(props) {
                 })
             })
         const interval = setInterval(() => {
-            fetch('http://localhost:8003/api/v1/daily/largest', {
+            fetch('http://104.248.18.145/api/v1/daily/largest', {
                 headers: {
                     "Content-Type": "application/json",
                     "Content-Length": key.length.toString(),

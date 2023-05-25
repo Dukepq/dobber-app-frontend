@@ -34,7 +34,7 @@ function App() {
   }, [key])
   useEffect(() => {
 
-    fetch('http://localhost:8003/api/v1/data', {
+    fetch('http://104.248.18.145/api/v1/data', {
       headers: {
         "Content-Type": "text/plain",
         "Content-Length": key.length.toString(),
@@ -55,7 +55,7 @@ function App() {
   }, [])
   useEffect(() => {
     const interval = setInterval(() => {
-      fetch('http://localhost:8003/api/v1/data', {
+      fetch('http://104.248.18.145/api/v1/data', {
         headers: {
           "Content-Type": "text/plain",
           "Content-Length": key.length.toString(),
