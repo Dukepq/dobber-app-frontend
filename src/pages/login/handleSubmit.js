@@ -1,5 +1,6 @@
+import { address } from "../../adress"
 export default async function handleSubmit(password) {
-    const data = await fetch("http://104.248.18.145/api/auth", {
+    const data = await fetch(`${address}/api/auth`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

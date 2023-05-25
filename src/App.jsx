@@ -13,6 +13,7 @@ import {default as extremes} from './extremesDef'
 import Homepage from './pages/homepage/homepage'
 import Docs from './pages/docs/docs'
 import { ThemeContext } from './useTheme'
+import { address } from './adress'
 
 function App() {
   const [data, setData] = useState([])
@@ -34,7 +35,7 @@ function App() {
   }, [key])
   useEffect(() => {
 
-    fetch('http://104.248.18.145/api/v1/data', {
+    fetch(`${address}/api/v1/data`, {
       headers: {
         "Content-Type": "text/plain",
         "Content-Length": key.length.toString(),
@@ -55,7 +56,7 @@ function App() {
   }, [])
   useEffect(() => {
     const interval = setInterval(() => {
-      fetch('http://104.248.18.145/api/v1/data', {
+      fetch(`${address}/api/v1/data`, {
         headers: {
           "Content-Type": "text/plain",
           "Content-Length": key.length.toString(),

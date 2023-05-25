@@ -1,12 +1,13 @@
 import { Outlet, Navigate } from "react-router-dom"
 import { useState, useContext, useEffect, useLayoutEffect } from "react"
 import { UserContext } from "./userContext"
+import { address } from "./adress"
 
 export default function AuthRequired(props) {
     const {key, setKey} = useContext(UserContext)
     const {auth, setAuth} = props
     useLayoutEffect(() => {
-            fetch("http://104.248.18.145/api/val", {
+            fetch(`${address}/api/val`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
