@@ -11,6 +11,7 @@ export default function Login(props) {
         setFormData(() => e.target.value)
     }
     const submit = async() => {
+        console.log(formData)
         const data = await handleSubmit(formData)
         if (data.success) {
             setKey(() => data.token)
@@ -53,12 +54,13 @@ export default function Login(props) {
                     The current build is experimental.
                 </li>
             </ol>
-            <label className="password">Access code:</label>
             <div className="input-form">
-                <input onChange={(e) => updateFormData(e)} className="form-input" id="password-form" name="password-form" type="password" value={formData}></input>
-                <button onClick={submit} id="submit-button">{">"}</button>
+                <input onChange={(e) => updateFormData(e)} onKeyDown={(e) => e.key === "Enter" && submit()}
+                className="form-input" id="password-form" name="password-form" type="password"
+                value={formData} placeholder="password"></input>
+                <button onClick={submit} id="submit-button">{"ENTER"}</button>
             </div>
-            
+            <label className="password">Contact the admin of this page for information regarding early access.</label>
         </div>
     </div>
     )

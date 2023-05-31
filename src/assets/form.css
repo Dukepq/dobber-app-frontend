@@ -8,7 +8,7 @@
 .container {
     width: 100%;
     min-height: 100dvh;
-    background: linear-gradient(90deg, rgb(19, 15, 24) 10%, rgb(43, 25, 64) 50%, rgb(23, 19, 28) 90%);
+    background: rgb(44, 46, 54);
     background-position: center center;
     display: grid;
     place-items: center;
@@ -24,12 +24,13 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: rgba(255, 255, 255, 0.835);
+    background-color: rgba(255, 255, 255, 1);
     max-width: 20%;
     min-width: 380px;
-    border-radius: 30px;
     max-height: 80vh;
-    padding: 50px 35px 50px 35px
+    padding: 50px 35px 50px 35px;
+    border-radius: 0.5rem;
+    /* box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75); */
 }
 
 .disclaimer {
@@ -51,8 +52,8 @@
 }
 
 ol {
-    margin-left: 2rem;
-    margin-bottom: 15%;
+    margin: 0.5rem 0 15% 2rem;
+
 }
 
 li {
@@ -61,10 +62,10 @@ li {
 }
 
 label {
-    font-weight: 600;
+    font-size: 0.8rem;
+    margin-top: 1rem;
+    font-weight: 400;
     opacity: 0.6;
-    margin-bottom: 0.1rem;
-    margin-left: 0.6rem;
 }
 
 .not {
@@ -72,45 +73,47 @@ label {
 }
 
 .input-form {
-    height: 3rem;
-    background-color: rgba(0, 0, 0, 0.398);
-    border-radius: 100vw;
+    height: 2rem;
     overflow: hidden;
     display: flex;
+    justify-content: space-between;
 }
 button {
+    font-size: 0.8rem;
+    font-weight: 600;
     height: 100%;
     border: none;
-    background-color: #2c2d3577;
-    width: 20%;
+    border-radius: 0.5rem;
+    width: 25%;
     color: white;
-    font-size: 1.8rem;
+    background-color: rgba(0, 0, 0, 0.9);
 }
 button:hover {
     cursor: pointer;
-    background-color: #4d516669;
+    background-color: #63636369;
+    color: black;
     transition: 250ms
 }
 
 .form-input {
-    background-color: rgba(237, 237, 237, 0.6);
-    border: none;
     height: 100%;
-    width: 80%;
-    font-size: 1.5rem;
-    color: white;
-    padding-left: 1rem;
-    transition: 500ms;
+    width: 70%;
+    font-size: 1rem;
     color: black;
+    border: none;
+    background-color: transparent;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.462);
 }
 
 .form-input:focus{
-
-    border: none;
     outline: none;
+    transition: 600ms;
 }
 
 @media (max-width: 600px ) {
+    .container {
+        background: rgba(255, 255, 255, 1);
+    }
     .wrapper {
         width: 100%;
         height: auto;
