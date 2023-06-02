@@ -3,6 +3,7 @@ import extremesDef from "../../extremesDef"
 import Favorite from "../../components/Favorite"
 import { Link } from "react-router-dom"
 import { colorPicker } from "./colorPicker"
+import ExclamationImage from "../../assets/triangle-exclamation-solid.svg"
 
 export default function AnalyticsColumns(props) {
     const {userSelection, setUserSelection} = props.userSelectionHook
@@ -14,6 +15,11 @@ export default function AnalyticsColumns(props) {
     })
     const {selectedIndicator} = props
     const { volatilityIndex, spread, recentVolume, ROBS } = extremesDef
+
+    const checkForAbnormality = () => {
+        if ((props.volumeData > recentVolume / 2 && props.volatilityIndex === 0)) return true
+    }
+
     useEffect(() => {
         const ROBSaColor = colorPicker(props.ROBSa, ROBS)
         const ROBSbColor = colorPicker(props.ROBSb, ROBS)
@@ -31,7 +37,8 @@ export default function AnalyticsColumns(props) {
     
     return (
         <div className={`row row-${props.id}`} style={userSelection.includes(props.name) ? {backgroundColor: "rgba(0, 0, 255, 0.12)"} : {}}>
-            <div className={`col col-1 col-1-row-${props.id ?? 1}`}><Favorite pair={props.name} userSelectionHook = {{userSelection, setUserSelection}}/><span><Link to={`/pair/${props.name}`}>{`${props.name}`}</Link></span></div>
+            <div className={`col col-1 col-1-row-${props.id ?? 1}`}><Favorite pair={props.name} userSelectionHook = {{userSelection, setUserSelection}}/>
+            <span><Link to={`/pair/${props.name}`}>{`${props.name}`}</Link></span>{checkForAbnormality() && <img className="screener-alert-image" src={ExclamationImage} alt="" />}</div>
             <div className={`col col-2 col-2-row-${props.id ?? 1}`}><a target="_blank" href={`https://account.bitvavo.com/markets/${props.name}`}><span>{props?.exchange}</span></a></div>
             <div style={{color: colors.ROBSa}} className={`col col-3 col-3-row-${props.id ?? 1}`}><span>{(Number(props.ROBSa?.toFixed(3)) || "low volume").toLocaleString('de-DE')}</span></div>
             <div style={{color: colors.ROBSb}} className={`col col-4 col-4-row-${props.id ?? 1}`}><span>{(Number(props.ROBSb?.toFixed(3)) || "low volume").toLocaleString('de-DE')}</span></div>

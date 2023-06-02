@@ -145,6 +145,11 @@ main {
     to {opacity: 100; transform: translate(100%, -50%)}
 }
 
+.screener-alert-image {
+    height: 50%;
+    filter: invert(9%) sepia(94%) saturate(7252%) hue-rotate(12deg) brightness(107%) contrast(126%);
+}
+
 .description-col span {
     cursor: pointer;
     display: inline;
@@ -161,7 +166,6 @@ main {
     align-items: center;
     position: relative;
 }
-
 
 .hover-container {
     position: relative;
