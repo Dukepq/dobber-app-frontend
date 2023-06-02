@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react"
 import { UserContext } from "../../userContext"
-import { address } from "../../adress"
+import { address } from "../../address"
 
 import ScreenerSegment from "./ScreenerSegment"
 export default function TopScreenerSection(props) {

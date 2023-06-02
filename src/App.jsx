@@ -13,7 +13,7 @@ import {default as extremes} from './extremesDef'
 import Homepage from './pages/homepage/homepage'
 import Docs from './pages/docs/docs'
 import { ThemeContext } from './useTheme'
-import { address } from './adress'
+import { address } from './address'
 
 function App() {
   const [data, setData] = useState([])

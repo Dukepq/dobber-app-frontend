@@ -1,7 +1,7 @@
 import { Outlet, Navigate } from "react-router-dom"
 import { useState, useContext, useEffect, useLayoutEffect } from "react"
 import { UserContext } from "./userContext"
-import { address } from "./adress"
+import { address } from "./address"
 
 export default function AuthRequired(props) {
     const {key, setKey} = useContext(UserContext)
